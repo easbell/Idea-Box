@@ -1,0 +1,30 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #524649;
+  padding: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+}
+
+h1 span {
+  color: #B2A1B1;
+}
+
+section {
+  width: 550px;
+  margin: auto;
+  justify-content: center;
+}
+
+.input-area input {
+  width: 100%;
+}
+
+#save {
+  display: block;
+}
