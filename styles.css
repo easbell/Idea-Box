@@ -1,5 +1,6 @@
 * {
   font-family: 'Open Sans', sans-serif;
+  color: #5f5a6b;
   text-transform: capitalize;
 }
 
@@ -45,6 +46,10 @@ h1 span {
   border-radius: 5px;
   outline: none;
   color: #7C7879;
+}
+
+.fa-search {
+  color: #FFFFFF;
 }
 
 button {
@@ -107,4 +112,46 @@ h3 {
 .cards-section {
   background-color: #F9F9FA;
   height: 200px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  border: 2px solid #d6d2d9;
+  border-radius: 5px;
+  margin: auto;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+}
+
+h2 {
+  margin: 0;
+  padding: 15px;
+}
+
+.body-text {
+  padding: 15px;
+  border-bottom: 2px solid #d6d2d9;
+  margin: 0;
+}
+
+.quality {
+  font-weight: 800;
+}
+
+div {
+  display: grid; 
+  grid-template-columns: 13% 13% 61% 13%;
+  align-items: center;
+  justify-content: end;
+  padding: 5px;
+}
+
+img {
+  width: 40px;
+}
+
+.delete {
+  float: right;
 }
