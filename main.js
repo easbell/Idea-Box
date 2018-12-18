@@ -13,6 +13,7 @@ var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
 var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
@@ -22,28 +23,32 @@ saveBtn.addEventListener('click', saveFunction);
 ///////////////////////////////////////////////
 //FUNCTIONS
 
-
 function saveFunction() {
+// SAVE IDEA
   var newIdea = new Idea(titleInput.value, bodyInput.value, Date.now());
   arrayOfIdeas.push(newIdea);
   newIdea.saveToStorage(arrayOfIdeas);
   newIdeaCard(newIdea.name, newIdea.content);
+  titleInput.value = "";
+  bodyInput.value = "";
 }
 
 function onPageLoad(){
+// CREATE CARDS ON PAGE LOAD
   arrayOfIdeas.forEach(function(element){
     newIdeaCard(element.name, element.content);
   })
 }
+
 onPageLoad();
 
-
 function newIdeaCard(name, content) {
+// CREATE CARD
   var cardSection = document.querySelector(".cards-section")
   var card = 
     `<article class="card">
-        <h2>${name}</h2>
-        <p class="body-text">${content}</p>
+        <h2 contenteditable = true>${name}</h2>
+        <p contenteditable = true class="body-text">${content}</p>
         <div>
           <img class="downvote" src="assets/downvote.svg">
           <img class="upvote" src="assets/upvote.svg">
@@ -53,13 +58,3 @@ function newIdeaCard(name, content) {
       </article>`;
   cardSection.innerHTML = card + cardSection.innerHTML;
 }
-
-
-function initializeLocalStorage() {
-}
-
-initializeLocalStorage();
-
-
-
-
