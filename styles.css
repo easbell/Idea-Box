@@ -4,15 +4,16 @@
 }
 
 body {
-    background-color: #eaeaea;
+  background-color: #eaeaea;
 }
 
+/*NAV BAR STYLING*/
 nav {
   background-color: #524649;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 20px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 h1 {
@@ -25,31 +26,73 @@ h1 span {
   text-transform: lowercase;
 }
 
-h3 {
-  font-weight: 300;
+#search {
+  font-size: 24px;
+  height: 26px;
 }
 
-section {
+.search-section {
+  width: 30%;
+  position: relative;
+}
+
+.search-input {
+  float: left;
+  width: 100%;
+  border: 3px solid #ada9b6;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+button {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 42px;
+  border: 1px solid #ada9b6;
+  background: #ada9b6;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 400px 1fr;
+}
+/*INPUT AREA STYLING*/
+h3 {
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.input-area {
   justify-content: center;
   margin: auto;
   width: 550px;
 }
 
-#card-holder {
-  background-color: #f9f9f9;
-  width: 100%;
-}
-
 .input-area input {
   width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid #d6d2d9;
 }
 
 #body {
   height: 150px;
+  border-radius: 5px;
+  border: 2px solid #d6d2d9;
 }
 
 #save {
   background-color: #63646b;
+  border: 0;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -60,7 +103,8 @@ section {
   width: 101%;
 }
 
-#search {
-  font-size: 24px;
-  height: 26px;
+/*CARD AREA STYLING*/
+.cards-section {
+  background-color: #F9F9FA;
+  height: 200px;
 }
