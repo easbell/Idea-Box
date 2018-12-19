@@ -12,10 +12,19 @@ class Idea {
   }
 
   deleteFromStorage(id){
-    var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas"))
+    var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas"));
     for (var i = 0; i < arrayOfIdeas.length; i++){
-      if (arrayOfIdeas[i].id === id) {
-        arrayOfIdeas.splice(i, 1);
+      console.log(id);
+      if (arrayOfIdeas[i].id == id) {
+      console.log(arrayOfIdeas[i].id);
+      arrayOfIdeas.splice(i, 1);
+      console.log(arrayOfIdeas);
+      // arrayOfIdeas.filter(oldIdea => oldIdea.id = )
+
+
+
+
+
         //filter through, then delete (filter out ids that != id wanted)
         //reassign to new array var 'filteredIdeas'
         }
@@ -23,6 +32,8 @@ class Idea {
     arrayOfIdeas = JSON.stringify(arrayOfIdeas);
     //set back into storage once stringified
   }
+
+
 
   updateContent(){
 

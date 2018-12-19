@@ -32,6 +32,7 @@ function deleteCard(){
   if(event.target.className === "delete") {
     event.target.parentElement.parentElement.remove();
     oldIdea.deleteFromStorage(oldIdea.id);
+    // console.log(oldIdea.id);
   }
 }
 
@@ -50,14 +51,14 @@ function onPageLoad(){
 // CREATE CARDS ON PAGE LOAD
   arrayOfIdeas.forEach(function(element){
     newIdeaCard(element.name, element.content, element.id);
-  })
+  });
 }
 
 onPageLoad();
 
 function newIdeaCard(name, content, id) {
 // CREATE CARD
-  var cardSection = document.querySelector(".cards-section")
+  var cardSection = document.querySelector(".cards-section");
   var card = 
     `<article data-id=${id} class="card">
       <h2 contenteditable = true>${name}</h2>
