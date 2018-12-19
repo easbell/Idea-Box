@@ -12,14 +12,18 @@ class Idea {
   }
 
   deleteFromStorage(id){
+    var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas"))
     for (var i = 0; i < arrayOfIdeas.length; i++){
-      var arrayOfIdeas = JSON.parse(arrayOfIdeas[i]);
-      if (arrayOfIdeas[i].id === arrayOfIdeas.dataset.id) {
+      if (arrayOfIdeas[i].id === id) {
         arrayOfIdeas.splice(i, 1);
+        //filter through, then delete (filter out ids that != id wanted)
+        //reassign to new array var 'filteredIdeas'
         }
       }
+    arrayOfIdeas = JSON.stringify(arrayOfIdeas);
+    //set back into storage once stringified
   }
-  
+
   updateContent(){
 
   }

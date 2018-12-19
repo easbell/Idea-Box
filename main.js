@@ -27,12 +27,11 @@ var cardsArea = document.querySelector(".cards-section");
 cardsArea.addEventListener('click', deleteCard);
 
 function deleteCard(){
+  var oldIdea = new Idea("", "", event.target.parentElement.parentElement.dataset.id);
+  console.log(oldIdea.deleteFromStorage);
   if(event.target.className === "delete") {
     event.target.parentElement.parentElement.remove();
-    // SOMETHING.deleteFromStorage();
-    for (var i = 0; i < arrayOfIdeas.length; i++) {
-      console.log(arrayOfIdeas[i].deleteFromStorage)
-    }
+    oldIdea.deleteFromStorage(oldIdea.id);
   }
 }
 
