@@ -23,12 +23,26 @@ saveBtn.addEventListener('click', saveFunction);
 ///////////////////////////////////////////////
 //FUNCTIONS
 
+var cardsArea = document.querySelector(".cards-section");
+cardsArea.addEventListener('click', deleteCard);
+
+function deleteCard(){
+  if(event.target.className === "delete") {
+    event.target.parentElement.parentElement.remove();
+    // SOMETHING.deleteFromStorage();
+    for (var i = 0; i < arrayOfIdeas.length; i++) {
+      console.log(arrayOfIdeas[i].deleteFromStorage)
+    }
+  }
+}
+
 function saveFunction() {
 // SAVE IDEA
   var newIdea = new Idea(titleInput.value, bodyInput.value, Date.now());
   arrayOfIdeas.push(newIdea);
   newIdea.saveToStorage(arrayOfIdeas);
-  newIdeaCard(newIdea.name, newIdea.content);
+  console.log(newIdea.id);  
+  newIdeaCard(newIdea.name, newIdea.content, newIdea.id);
   titleInput.value = "";
   bodyInput.value = "";
 }
@@ -36,25 +50,25 @@ function saveFunction() {
 function onPageLoad(){
 // CREATE CARDS ON PAGE LOAD
   arrayOfIdeas.forEach(function(element){
-    newIdeaCard(element.name, element.content);
+    newIdeaCard(element.name, element.content, element.id);
   })
 }
 
 onPageLoad();
 
-function newIdeaCard(name, content) {
+function newIdeaCard(name, content, id) {
 // CREATE CARD
   var cardSection = document.querySelector(".cards-section")
   var card = 
-    `<article class="card">
-        <h2 contenteditable = true>${name}</h2>
-        <p contenteditable = true class="body-text">${content}</p>
-        <div>
-          <img class="downvote" src="assets/downvote.svg">
-          <img class="upvote" src="assets/upvote.svg">
-          <p class="quality">Quality: Swill</p>
-          <img class="delete" src="assets/delete.svg">
-        </div>
-      </article>`;
+    `<article data-id=${id} class="card">
+      <h2 contenteditable = true>${name}</h2>
+      <p contenteditable = true class="body-text">${content}</p>
+      <div>
+        <img class="downvote" src="assets/downvote.svg">
+        <img class="upvote" src="assets/upvote.svg">
+        <p class="quality">Quality: Swill</p>
+        <img class="delete" src="assets/delete.svg">
+      </div>
+    </article>`;
   cardSection.innerHTML = card + cardSection.innerHTML;
 }
