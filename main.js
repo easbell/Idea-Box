@@ -13,6 +13,7 @@ var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
 var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
@@ -22,44 +23,51 @@ saveBtn.addEventListener('click', saveFunction);
 ///////////////////////////////////////////////
 //FUNCTIONS
 
+var cardsArea = document.querySelector(".cards-section");
+cardsArea.addEventListener('click', deleteCard);
+
+function deleteCard(){
+  var oldIdea = new Idea("", "", event.target.parentElement.parentElement.dataset.id);
+  console.log(oldIdea.deleteFromStorage);
+  if(event.target.className === "delete") {
+    event.target.parentElement.parentElement.remove();
+    oldIdea.deleteFromStorage(oldIdea.id);
+  }
+}
 
 function saveFunction() {
+// SAVE IDEA
   var newIdea = new Idea(titleInput.value, bodyInput.value, Date.now());
   arrayOfIdeas.push(newIdea);
   newIdea.saveToStorage(arrayOfIdeas);
-  newIdeaCard(newIdea.name, newIdea.content);
+  console.log(newIdea.id);  
+  newIdeaCard(newIdea.name, newIdea.content, newIdea.id);
+  titleInput.value = "";
+  bodyInput.value = "";
 }
 
 function onPageLoad(){
+// CREATE CARDS ON PAGE LOAD
   arrayOfIdeas.forEach(function(element){
-    newIdeaCard(element.name, element.content);
+    newIdeaCard(element.name, element.content, element.id);
   })
 }
+
 onPageLoad();
 
-
-function newIdeaCard(name, content) {
+function newIdeaCard(name, content, id) {
+// CREATE CARD
   var cardSection = document.querySelector(".cards-section")
   var card = 
-    `<article class="card">
-        <h2>${name}</h2>
-        <p class="body-text">${content}</p>
-        <div>
-          <img class="downvote" src="assets/downvote.svg">
-          <img class="upvote" src="assets/upvote.svg">
-          <p class="quality">Quality: Swill</p>
-          <img class="delete" src="assets/delete.svg">
-        </div>
-      </article>`;
+    `<article data-id=${id} class="card">
+      <h2 contenteditable = true>${name}</h2>
+      <p contenteditable = true class="body-text">${content}</p>
+      <div>
+        <img class="downvote" src="assets/downvote.svg">
+        <img class="upvote" src="assets/upvote.svg">
+        <p class="quality">Quality: Swill</p>
+        <img class="delete" src="assets/delete.svg">
+      </div>
+    </article>`;
   cardSection.innerHTML = card + cardSection.innerHTML;
 }
-
-
-function initializeLocalStorage() {
-}
-
-initializeLocalStorage();
-
-
-
-

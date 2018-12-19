@@ -5,17 +5,23 @@ class Idea {
     this.id = id;
   }
 
-  //concat to add to variable so we can combine arrays
-
   saveToStorage(ideaArray){
     //Stringifying and setting in local storage
-
     var stringifiedCards = JSON.stringify(ideaArray);
     localStorage.setItem("savedIdeas", stringifiedCards);
   }
 
-  deleteFromStorage(){
-
+  deleteFromStorage(id){
+    var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas"))
+    for (var i = 0; i < arrayOfIdeas.length; i++){
+      if (arrayOfIdeas[i].id === id) {
+        arrayOfIdeas.splice(i, 1);
+        //filter through, then delete (filter out ids that != id wanted)
+        //reassign to new array var 'filteredIdeas'
+        }
+      }
+    arrayOfIdeas = JSON.stringify(arrayOfIdeas);
+    //set back into storage once stringified
   }
 
   updateContent(){
@@ -27,8 +33,5 @@ class Idea {
   }
 }
 
-//add empty array to a saved localStorage key
 
 
-    // var arrayOfIdeas = stringifiedCard.push(stringifiedCard);
-    // var existingIdeas = stringifiedCard.concat(stringifiedCard)
