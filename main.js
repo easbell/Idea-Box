@@ -17,25 +17,35 @@ var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
 //AREA VARIABLE
 var cardsArea = document.querySelector(".cards-section");
 
+//SEARCH BOX VARIABLE
+
+//CARD
+var card = document.querySelector(".card")
 var cardTitle = document.querySelector(".card-title");
 var bodyText = document.querySelector(".body-text");
+
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
 saveBtn.addEventListener('click', saveFunction);
 cardsArea.addEventListener('click', deleteCard);
-cardTitle.addEventListener('keypress', function (e) {
-  var key = e.which || e.keyCode;
+
+cardsArea.addEventListener('keyup', function (e) {
+  var key = e.keyCode;
   if (key === 13) {
     editCard();
   }
 });
 
+
 ///////////////////////////////////////////////
 //FUNCTIONS
 
 function editCard(){
-  alert()
+  var editedIdea = new Idea("","", event.target.parentElement.dataset.id);
+  if (event.target.className === "card-input") {    
+    editedIdea.updateContent(editedIdea.id);
+  }
 }
 
 
@@ -44,8 +54,6 @@ function deleteCard(){
   if (event.target.className === "delete") {
     event.target.parentElement.parentElement.remove();
     oldIdea.deleteFromStorage(oldIdea.id);
-    // console.log(oldIdea.id)
-
   }
 }
 
@@ -54,7 +62,6 @@ function saveFunction() {
   var newIdea = new Idea(titleInput.value, bodyInput.value, Date.now());
   arrayOfIdeas.push(newIdea);
   newIdea.saveToStorage(arrayOfIdeas);
-  console.log(newIdea.id);  
   newIdeaCard(newIdea.name, newIdea.content, newIdea.id);
   titleInput.value = "";
   bodyInput.value = "";
@@ -74,8 +81,8 @@ function newIdeaCard(name, content, id) {
   var cardSection = document.querySelector(".cards-section");
   var card = 
     `<article data-id=${id} class="card">
-      <h2 contenteditable = true class= "card-title">${name}</h2>
-      <p contenteditable = true class="body-text">${content}</p>
+      <h2 contenteditable = true class= "card-input card-title">${name}</h2>
+      <p contenteditable = true class= "card-input body-text">${content}</p>
       <div>
         <img class="downvote" src="assets/downvote.svg">
         <img class="upvote" src="assets/upvote.svg">
@@ -85,3 +92,19 @@ function newIdeaCard(name, content, id) {
     </article>`;
   cardSection.innerHTML = card + cardSection.innerHTML;
 }
+
+// var searchField = document.getElementById("search");
+
+// searchField.addEventListener('keyup', search)
+
+// function search() {
+//   var index = arrayOfIdeas.indexOf(searchField.value)
+  
+//   if(index !== -1) {
+//     alert('exist');
+//   } else {
+//     alert('not exist');
+//   }
+
+//   document.getElementById('pgh').innerHTML = myArr;
+// }
