@@ -23,7 +23,6 @@ class Idea {
 		}
 
 
-
   updateContent(){
 
   }
