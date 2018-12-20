@@ -14,24 +14,26 @@ var searchBtn = document.getElementById("searchBtn");
 //ARRAY VARIABLE
 var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
 
+//AREA VARIABLE
+var cardsArea = document.querySelector(".cards-section");
+
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
 saveBtn.addEventListener('click', saveFunction);
+cardsArea.addEventListener('click', deleteCard);
 
 
 ///////////////////////////////////////////////
 //FUNCTIONS
 
-var cardsArea = document.querySelector(".cards-section");
-cardsArea.addEventListener('click', deleteCard);
 
 function deleteCard(){
   var oldIdea = new Idea("", "", event.target.parentElement.parentElement.dataset.id);
-  console.log(oldIdea.deleteFromStorage);
-  if(event.target.className === "delete") {
+  if (event.target.className === "delete") {
     event.target.parentElement.parentElement.remove();
     oldIdea.deleteFromStorage(oldIdea.id);
+    // console.log(oldIdea.id)
   }
 }
 
@@ -52,7 +54,6 @@ function onPageLoad(){
     newIdeaCard(element.name, element.content, element.id);
   })
 }
-
 onPageLoad();
 
 function newIdeaCard(name, content, id) {
