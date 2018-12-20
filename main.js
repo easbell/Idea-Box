@@ -42,10 +42,9 @@ cardsArea.addEventListener('keyup', function (e) {
 //FUNCTIONS
 
 function editCard(){
-  var editedIdea = new Idea("","", event.target.parentElement.dataset.id);
-  if (event.target.className === "card-input") {    
-    editedIdea.updateContent(editedIdea.id);
-  }
+  var editedIdea = new Idea(event.target.innerText, event.target.innerText, event.target.parentElement.dataset.id);
+  console.log(event.target.innerText)  
+  editedIdea.updateContent(editedIdea.id); 
 }
 
 

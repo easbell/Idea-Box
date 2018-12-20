@@ -22,12 +22,11 @@ class Idea {
 		}
 
 
-  updateContent(id){
+  updateContent(id, name, content){
   	for (var i = 0; i < arrayOfIdeas.length; i++){
-  		console.log(editedIdea.id)
 			if (arrayOfIdeas[i].id == id) {
-		  	this.name = cardTitle.value
-		  	this.content = bodyText.value
+		  	this.name = name;
+		  	this.content = content;
 
   // updateQuality(){
 
