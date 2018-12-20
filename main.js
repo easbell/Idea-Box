@@ -17,15 +17,26 @@ var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
 //AREA VARIABLE
 var cardsArea = document.querySelector(".cards-section");
 
+var cardTitle = document.querySelector(".card-title");
+var bodyText = document.querySelector(".body-text");
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
 saveBtn.addEventListener('click', saveFunction);
 cardsArea.addEventListener('click', deleteCard);
-
+cardTitle.addEventListener('keypress', function (e) {
+  var key = e.which || e.keyCode;
+  if (key === 13) {
+    editCard();
+  }
+});
 
 ///////////////////////////////////////////////
 //FUNCTIONS
+
+function editCard(){
+  alert()
+}
 
 
 function deleteCard(){
@@ -57,12 +68,13 @@ function onPageLoad(){
 }
 onPageLoad();
 
+
 function newIdeaCard(name, content, id) {
 // CREATE CARD
   var cardSection = document.querySelector(".cards-section");
   var card = 
     `<article data-id=${id} class="card">
-      <h2 contenteditable = true>${name}</h2>
+      <h2 contenteditable = true class= "card-title">${name}</h2>
       <p contenteditable = true class="body-text">${content}</p>
       <div>
         <img class="downvote" src="assets/downvote.svg">
