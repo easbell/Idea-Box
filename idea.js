@@ -23,7 +23,6 @@ class Idea {
 
 	updateContent(newText, type) {
   	//pass in the actual new text (1st arg), string of name or content (2nd arg)
-  	console.log(newText)
   	this[type] = newText;
 		  	//type is a string, will match to the right property
 		  	// thiscontent = content;

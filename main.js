@@ -48,7 +48,7 @@ cardsArea.addEventListener('dblclick', editCard)
 function editCard(event){
   event.target.contentEditable = true;
 
-  document.body.addEventListener('keyup', function (e) {
+  document.body.addEventListener('keypress', function (e) {
     var key = e.keyCode;
     if (key === 13) {
       event.target.contentEditable = false;
@@ -94,10 +94,9 @@ function pageLoad(){
   if (localStorage.hasOwnProperty("savedIdeas")){
     var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
     localStorageArray.forEach(function(element,index){
-    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
-    newIdeaCard(element);
-    
-    arrayOfIdeas.push(newIdea)
+      var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+      newIdeaCard(element);
+      arrayOfIdeas.push(newIdea)
     });
   }
 }
