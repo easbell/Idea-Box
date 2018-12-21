@@ -7,7 +7,6 @@ class Idea {
 	}
 
 	saveToStorage(ideaArray){
-		//Stringifying and setting in local storage
 		var stringifiedCards = JSON.stringify(ideaArray);
 		localStorage.setItem("savedIdeas", stringifiedCards);
 	}
@@ -18,21 +17,21 @@ class Idea {
 				var removedIdeas = arrayOfIdeas.splice(i, 1);
 				var stringifiedCards = JSON.stringify(arrayOfIdeas)
 				localStorage.setItem("savedIdeas", stringifiedCards)
-				}
 			}
 		}
-
-  updateContent(newText, type){
-  	//pass in the actual new text (1st arg), string of name or content (2nd arg)
-  		console.log(newText)
-		  	this[type] = newText;
-		  	//type is a string, will match to the right property
-		  	// thiscontent = content;
-	  }
-	 //  var stringifiedCards = JSON.stringify(arrayOfIdeas)
-		// localStorage.setItem("savedIdeas", stringifiedCards)
 	}
 
+	updateContent(newText, type) {
+  	//pass in the actual new text (1st arg), string of name or content (2nd arg)
+  	console.log(newText)
+  	this[type] = newText;
+		  	//type is a string, will match to the right property
+		  	// thiscontent = content;
+		  }
+	 //  var stringifiedCards = JSON.stringify(arrayOfIdeas)
+		// localStorage.setItem("savedIdeas", stringifiedCards)
+
+	}
 	//WE NEED TO PUT UPDATED OBJECT BACK INTO ARRAY, AND RE SAVE TO LOCAL STORAGE
 
 
