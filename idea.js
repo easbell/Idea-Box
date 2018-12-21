@@ -22,19 +22,18 @@ class Idea {
 			}
 		}
 
-
-  updateContent(id){
+  updateContent(id, name, content){
+  	console.log(id, name, content)
   	for (var i = 0; i < arrayOfIdeas.length; i++){
-  		console.log(editedIdea.id)
+  		// console.log(id, name, content)
 			if (arrayOfIdeas[i].id == id) {
-		  	this.name = cardTitle.value
-		  	this.content = bodyText.value
-
-  // updateQuality(){
-
+		  	this.name = name;
+		  	this.content = content;
 	  }
-
+	   var stringifiedCards = JSON.stringify(arrayOfIdeas)
+		localStorage.setItem("savedIdeas", stringifiedCards)
 	}
+	//WE NEED TO PUT UPDATED OBJECT BACK INTO ARRAY, AND RE SAVE TO LOCAL STORAGE
 }
 }
 
@@ -48,3 +47,8 @@ class Idea {
  //  } else {
  //  	this.quality = 'Swill'
  //  }
+
+
+   // updateQuality(){
+}
+

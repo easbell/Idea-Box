@@ -19,6 +19,7 @@ var qualityArray = ["Swill", "Plausible", "Genius"]
 var cardsArea = document.querySelector(".cards-section");
 
 //SEARCH BOX VARIABLE
+var searchField = document.getElementById("search");
 
 //CARD
 var card = document.querySelector(".card")
@@ -30,7 +31,10 @@ var bodyText = document.querySelector(".body-text");
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
+searchField.addEventListener('input', searchFunction);
+
 saveBtn.addEventListener('click', saveFunction);
+
 cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
@@ -47,11 +51,12 @@ cardsArea.addEventListener('keyup', function (e) {
 //FUNCTIONS
 
 function editCard(){
-  var editedIdea = new Idea("","", event.target.parentElement.dataset.id);
-  if (event.target.className === "card-input") {    
-    editedIdea.updateContent(editedIdea.id);
+  var editedIdea = new Idea(event.target.innerText, event.target.parentElement.innerText, event.target.parentElement.dataset.id);
+  //WE NEED TO FIGURE OUT HOW TO CAPTURE BOTH FIELDS AT ONCE INSTEAD OF JUST THE TARGET
+    editedIdea.updateContent(editedIdea.id, editedIdea.name, editedIdea.content);
+    console.log(editedIdea.id, editedIdea.name, editedIdea.content)
+
   }
-}
 
 
 function deleteCard(){
@@ -137,18 +142,19 @@ function updateQuality(thisElement, num) {
 
 
 
+
 // var searchField = document.getElementById("search");
 
-// searchField.addEventListener('keyup', search)
+function searchFunction() {
+//SEARCH FUNCTION
+  cardsArea.innerHTML = "";
+  var toFind = searchField.value;
+  var index = arrayOfIdeas.filter(function(idea) {
+    return idea.name.includes(toFind) || idea.content.includes(toFind);
+  })
+    index.forEach(function(element){
+    newIdeaCard(element.name, element.content);
+  })
+}
 
-// function search() {
-//   var index = arrayOfIdeas.indexOf(searchField.value)
-  
-//   if(index !== -1) {
-//     alert('exist');
-//   } else {
-//     alert('not exist');
-//   }
 
-//   document.getElementById('pgh').innerHTML = myArr;
-// }
