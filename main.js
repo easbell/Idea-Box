@@ -108,7 +108,7 @@ cardSection.insertAdjacentHTML('afterbegin',
   <div>
   <img class="downvote" onclick="updateQuality(-1)" src="assets/downvote.svg">
   <img class="upvote" onclick="updateQuality(1)" src="assets/upvote.svg">
-  <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
+  <p class="quality">Quality: <span>${qualityArray[idea.quality]}</span></p>
   <img class="delete" src="assets/delete.svg">
   </div>
   </article>`
@@ -122,36 +122,60 @@ cardSection.insertAdjacentHTML('afterbegin',
  //  if (event.target.className === "downvote") {
 
 function updateQuality(num) {
+    var parent = (event.target.parentElement.parentElement.dataset.id);
+    console.log(parent)
+
     var index = parseInt(event.target.parentElement.parentElement.dataset.id);
     var qualityTarget = arrayOfIdeas.find(function(idea) {
       return idea.id === index;
     })
-    var qualityText = event.target.nextSibling.nextElementSibling.innerText;
+    console.log(qualityTarget.quality)
+   
+
+
+
     if (num === 1) {
-      qualityTarget.quality++;
-      console.log(qualityTarget.quality)
-      console.log(qualityText)
-    } else if (num === -1) {
-      qualityTarget.quality--;
+      if (qualityTarget.quality === 0) {
+        console.log('Plausible')
+        qualityTarget.quality = 1;
+      } else if (qualityTarget.quality === 1) {
+        qualityTarget.quality = 2;
+      } else if (num === -1) {
+      if (qualityTarget.quality === 1) {
+        console.log("swill")
+        qualityTarget.quality = 0;
+        } else if (qualityTarget.quality === 2) {
+          qualityTarget.quality = 1;
+        }
+      }
     }
-    if (qualityTarget.quality === 1) {
-      qualityText = qualityArray[1];
-      console.log(qualityText)
-    } else if (qualityTarget.quality === 2){
-      qualityText = qualityArray[2];
-      console.log(qualityText)
-    } else if (qualityTarget.quality === 0)
-      qualityText = qualityArray[0];
-      console.log(qualityText)
+
+
+
+
+
+
+    // console.log(index)
+    // var qualityText = event.target.nextSibling.nextElementSibling;
+    // console.log(event.target)
+    // if (num === 1) {
+    //   qualityTarget.quality = 1;
+    // } else if (num === -1) {
+    //   qualityTarget.quality--;
+    // }
+
+    // console.log(qualityTarget.quality)
+
+
+  //   if (qualityTarget.quality === 1) {
+  //     qualityText.innerText = `Quality: ${qualityArray[1]}`;
+  //   } else if (qualityTarget.quality === 2){
+  //     qualityText.innerText = `Quality: ${qualityArray[2]}`;
+  //   } else if (qualityTarget.quality === 0)
+  //     qualityText.innerText = `Quality: ${qualityArray[0]}`;
   }
 
-   // if (counter >= 2) {
- //   this.quality = 'Genius'
- //  } else if (counter = 1) {
- //   this.quality = 'Plausible'
- //  } else {
- //   this.quality = 'Swill'
- //  }
+
 
   // var index = parseInt(event.target.parentElement.dataset.id);
 
