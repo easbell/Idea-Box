@@ -39,8 +39,6 @@ cardsArea.addEventListener('click', deleteCard);
 window.addEventListener('load', pageLoad);
 
 cardsArea.addEventListener('dblclick', editCard)
-// bodyText.addEventListener('dblclick', editCard)
-
 
 ///////////////////////////////////////////////
 //FUNCTIONS
@@ -62,7 +60,6 @@ function editCard(event){
         ideaTarget.updateContent(event.target.innerText, "content")
       }
       ideaTarget.saveToStorage(arrayOfIdeas)
-    //removing event listener
     }
   });
 }
@@ -109,32 +106,63 @@ cardSection.insertAdjacentHTML('afterbegin',
   <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
   <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
   <div>
-  <img class="downvote" onclick="updateQuality(this, -1)" src="assets/downvote.svg">
-  <img class="upvote" onclick="updateQuality(this, 1)" src="assets/upvote.svg">
-  <p class="quality">Quality: ${idea.quality}</p>
+  <img class="downvote" onclick="updateQuality(-1)" src="assets/downvote.svg">
+  <img class="upvote" onclick="updateQuality(1)" src="assets/upvote.svg">
+  <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
   <img class="delete" src="assets/delete.svg">
   </div>
   </article>`
   );
-  // var card = 
-
-  // cardSection.innerHTML = card + cardSection.innerHTML;
-// downvoteBtn.addEventListener('click', updateQuality);
-// upvoteBtn.addEventListener('click', updateQuality);
-
 }
 
-// function updateQuality(thisElement, num) {
-//   // console.log(id)
+// cardsArea.addEventListener('click', updateQuality);
+// upvoteBtn.addEventListener('click', updateQuality);
 
-//   // get the object find
-//   // arrayOfIdeas
+ // console.log("hello")
+ //  if (event.target.className === "downvote") {
 
-//   counter += num;
-//   // If this element has class of upvote, allow this, if the element has a class of downvote, do this
+function updateQuality(num) {
+    var index = parseInt(event.target.parentElement.parentElement.dataset.id);
+    var qualityTarget = arrayOfIdeas.find(function(idea) {
+      return idea.id === index;
+    })
+    var qualityText = event.target.nextSibling.nextElementSibling.innerText;
+    if (num === 1) {
+      qualityTarget.quality++;
+      console.log(qualityTarget.quality)
+      console.log(qualityText)
+    } else if (num === -1) {
+      qualityTarget.quality--;
+    }
+    if (qualityTarget.quality === 1) {
+      qualityText = qualityArray[1];
+      console.log(qualityText)
+    } else if (qualityTarget.quality === 2){
+      qualityText = qualityArray[2];
+      console.log(qualityText)
+    } else if (qualityTarget.quality === 0)
+      qualityText = qualityArray[0];
+      console.log(qualityText)
+  }
 
-//   thisElement.nextElementSibling.innerHTML = qualityArray[counter];
-// }
+   // if (counter >= 2) {
+ //   this.quality = 'Genius'
+ //  } else if (counter = 1) {
+ //   this.quality = 'Plausible'
+ //  } else {
+ //   this.quality = 'Swill'
+ //  }
+
+  // var index = parseInt(event.target.parentElement.dataset.id);
+
+  // get the object find
+  // arrayOfIdeas
+
+  // counter += num;
+  // If this element has class of upvote, allow this, if the element has a class of downvote, do this
+
+  // thisElement.nextElementSibling.innerHTML = qualityArray[counter];
+
 
 function searchFunction() {
 //SEARCH FUNCTION
