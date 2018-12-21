@@ -1,8 +1,9 @@
 class Idea {
-	constructor(name, content, id) {
+	constructor(name, content, id, quality) {
 		this.name = name;
 		this.content = content;
 		this.id = id;
+		this.quality = quality;
 	}
 
 	saveToStorage(ideaArray){
@@ -34,6 +35,20 @@ class Idea {
 	}
 	//WE NEED TO PUT UPDATED OBJECT BACK INTO ARRAY, AND RE SAVE TO LOCAL STORAGE
 }
+}
+
+
+
+
+ // if (counter >= 2) {
+ //  	this.quality = 'Genius'
+ //  } else if (counter = 1) {
+ //  	this.quality = 'Plausible'
+ //  } else {
+ //  	this.quality = 'Swill'
+ //  }
+
 
    // updateQuality(){
 }
+

@@ -13,6 +13,7 @@ var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
 var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+var qualityArray = ["Swill", "Plausible", "Genius"]
 
 //AREA VARIABLE
 var cardsArea = document.querySelector(".cards-section");
@@ -25,6 +26,8 @@ var card = document.querySelector(".card")
 var cardTitle = document.querySelector(".card-title");
 var bodyText = document.querySelector(".body-text");
 
+
+
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
@@ -33,6 +36,8 @@ searchField.addEventListener('input', searchFunction);
 saveBtn.addEventListener('click', saveFunction);
 
 cardsArea.addEventListener('click', deleteCard);
+
+window.addEventListener('load', pageLoad);
 
 cardsArea.addEventListener('keyup', function (e) {
   var key = e.keyCode;
@@ -64,39 +69,81 @@ function deleteCard(){
 
 function saveFunction() {
 // SAVE IDEA
-  var newIdea = new Idea(titleInput.value, bodyInput.value, Date.now());
+  id = Date.now();
+  var quality = 0;
+  var newIdea = new Idea(titleInput.value, bodyInput.value, id, quality);
   arrayOfIdeas.push(newIdea);
   newIdea.saveToStorage(arrayOfIdeas);
-  newIdeaCard(newIdea.name, newIdea.content, newIdea.id);
+  newIdeaCard(newIdea);
   titleInput.value = "";
   bodyInput.value = "";
 }
 
-function onPageLoad(){
+function pageLoad(){
 // CREATE CARDS ON PAGE LOAD
-  arrayOfIdeas.forEach(function(element){
-    newIdeaCard(element.name, element.content, element.id);
+//recreate new instances on page load
+  
+  
+  arrayOfIdeas.forEach(function(element,index){
+    // var newArr = JSON.parse(localStorage.key(index));
+    console.log('another');
+
+    // var newArr = JSON.parse(arrayOfIdeas);
+    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+    newIdeaCard(arrayOfIdeas[index]);
+    
+    
+    arrayOfIdeas.push(newIdea)
   });
 }
-onPageLoad();
 
 
-function newIdeaCard(name, content, id) {
+
+function newIdeaCard(idea) {
 // CREATE CARD
   var cardSection = document.querySelector(".cards-section");
-  var card = 
-    `<article data-id=${id} class="card">
-      <h2 contenteditable = true class= "card-input card-title">${name}</h2>
-      <p contenteditable = true class= "card-input body-text">${content}</p>
+  cardSection.insertAdjacentHTML('beforeend', 
+    `<article data-id=${idea.id} class="card">
+      <h2 contenteditable = true class= "card-input card-title">${idea.name}</h2>
+      <p contenteditable = true class= "card-input body-text">${idea.content}</p>
       <div>
-        <img class="downvote" src="assets/downvote.svg">
-        <img class="upvote" src="assets/upvote.svg">
-        <p class="quality">Quality: Swill</p>
+        <img class="downvote" onclick="updateQuality(this, -1)" src="assets/downvote.svg">
+        <img class="upvote" onclick="updateQuality(this, 1)" src="assets/upvote.svg">
+        <p class="quality">Quality: ${idea.quality}</p>
         <img class="delete" src="assets/delete.svg">
       </div>
-    </article>`;
-  cardSection.innerHTML = card + cardSection.innerHTML;
+    </article>`
+  );
+  // var card = 
+    
+  // cardSection.innerHTML = card + cardSection.innerHTML;
+// downvoteBtn.addEventListener('click', updateQuality);
+// upvoteBtn.addEventListener('click', updateQuality);
+
 }
+
+function updateQuality(thisElement, num) {
+  // console.log(id)
+
+  // get the object find
+  // arrayOfIdeas
+
+
+  
+  counter += num;
+
+  
+  // If this element has class of upvote, allow this, if the element has a class of downvote, do this
+
+  thisElement.nextElementSibling.innerHTML = qualityArray[counter];
+
+}
+
+
+
+
+
+// var searchField = document.getElementById("search");
 
 function searchFunction() {
 //SEARCH FUNCTION
@@ -109,9 +156,5 @@ function searchFunction() {
     newIdeaCard(element.name, element.content);
   })
 }
-
-
-
-
 
 
