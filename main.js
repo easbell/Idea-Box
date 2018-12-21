@@ -12,7 +12,7 @@ var deleteBtn = document.querySelector(".delete");
 var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
-var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+var arrayOfIdeas = [];
 var qualityArray = ["Swill", "Plausible", "Genius"]
 
 //AREA VARIABLE
@@ -39,25 +39,44 @@ cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
 
-cardsArea.addEventListener('keyup', function (e) {
-  var key = e.keyCode;
-  if (key === 13) {
-    editCard();
-  }
-});
+cardsArea.addEventListener('dblclick', editCard)
+// bodyText.addEventListener('dblclick', editCard)
+
+
 
 
 ///////////////////////////////////////////////
 //FUNCTIONS
 
-function editCard(){
-  var editedIdea = new Idea(event.target.innerText, event.target.parentElement.innerText, event.target.parentElement.dataset.id);
-  //WE NEED TO FIGURE OUT HOW TO CAPTURE BOTH FIELDS AT ONCE INSTEAD OF JUST THE TARGET
-    editedIdea.updateContent(editedIdea.id, editedIdea.name, editedIdea.content);
-    console.log(editedIdea.id, editedIdea.name, editedIdea.content)
+function editCard(event){
+  event.target.contentEditable = true;
+
+
+  document.body.addEventListener('keyup', function (e) {
+    var key = e.keyCode;
+    if (key === 13) {
+      event.target.contentEditable = false;
+      var index = parseInt(event.target.parentElement.dataset.id);
+      var ideaTarget = arrayOfIdeas.find(function(idea) {
+        return idea.id === index;
+      })
+      if (event.target.classList.contains("card-title")) {
+        ideaTarget.updateContent(event.target.innerText, "name")
+      } else if (event.target.classList.contains("body-text")) {
+        ideaTarget.updateContent(event.target.innerText, "content")
+      }
+      ideaTarget.saveToStorage(arrayOfIdeas)
+    //removing event listener
+    }
+
+    });
 
   }
 
+
+  // var editedIdea = new Idea(event.target.innerText, event.target.parentElement.innerText, event.target.parentElement.dataset.id);
+  //   editedIdea.updateContent(editedIdea.id, editedIdea.name, editedIdea.content);
+  //   console.log(editedIdea.id, editedIdea.name, editedIdea.content)
 
 function deleteCard(){
   var oldIdea = new Idea("", "", event.target.parentElement.parentElement.dataset.id);
@@ -82,30 +101,26 @@ function saveFunction() {
 function pageLoad(){
 // CREATE CARDS ON PAGE LOAD
 //recreate new instances on page load
-  
-  
-  arrayOfIdeas.forEach(function(element,index){
-    // var newArr = JSON.parse(localStorage.key(index));
-    console.log('another');
-
-    // var newArr = JSON.parse(arrayOfIdeas);
+  if (localStorage.hasOwnProperty("savedIdeas")){
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  localStorageArray.forEach(function(element,index){
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
-    newIdeaCard(arrayOfIdeas[index]);
-    
+    newIdeaCard(element);
     
     arrayOfIdeas.push(newIdea)
-  });
+    });
+  }
 }
 
-
+//if title was edited, turn to true, grab value, does the event target, contain class card-title or body-text?
 
 function newIdeaCard(idea) {
 // CREATE CARD
   var cardSection = document.querySelector(".cards-section");
-  cardSection.insertAdjacentHTML('beforeend', 
+  cardSection.insertAdjacentHTML('afterbegin', 
     `<article data-id=${idea.id} class="card">
-      <h2 contenteditable = true class= "card-input card-title">${idea.name}</h2>
-      <p contenteditable = true class= "card-input body-text">${idea.content}</p>
+      <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
+      <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
       <div>
         <img class="downvote" onclick="updateQuality(this, -1)" src="assets/downvote.svg">
         <img class="upvote" onclick="updateQuality(this, 1)" src="assets/upvote.svg">

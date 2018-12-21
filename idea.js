@@ -22,20 +22,20 @@ class Idea {
 			}
 		}
 
-  updateContent(id, name, content){
-  	console.log(id, name, content)
-  	for (var i = 0; i < arrayOfIdeas.length; i++){
-  		// console.log(id, name, content)
-			if (arrayOfIdeas[i].id == id) {
-		  	this.name = name;
-		  	this.content = content;
+  updateContent(newText, type){
+  	//pass in the actual new text (1st arg), string of name or content (2nd arg)
+  		console.log(newText)
+		  	this[type] = newText;
+		  	//type is a string, will match to the right property
+		  	// thiscontent = content;
 	  }
-	   var stringifiedCards = JSON.stringify(arrayOfIdeas)
-		localStorage.setItem("savedIdeas", stringifiedCards)
+	 //  var stringifiedCards = JSON.stringify(arrayOfIdeas)
+		// localStorage.setItem("savedIdeas", stringifiedCards)
 	}
+
 	//WE NEED TO PUT UPDATED OBJECT BACK INTO ARRAY, AND RE SAVE TO LOCAL STORAGE
-}
-}
+
+
 
 
 
@@ -50,5 +50,5 @@ class Idea {
 
 
    // updateQuality(){
-}
+
 
