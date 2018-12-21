@@ -12,7 +12,7 @@ var deleteBtn = document.querySelector(".delete");
 var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
-var arrayOfIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+var arrayOfIdeas = [];
 var qualityArray = ["Swill", "Plausible", "Genius"]
 
 //AREA VARIABLE
@@ -27,7 +27,6 @@ var cardTitle = document.querySelector(".card-title");
 var bodyText = document.querySelector(".body-text");
 
 
-
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
@@ -39,25 +38,34 @@ cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
 
-cardsArea.addEventListener('keyup', function (e) {
-  var key = e.keyCode;
-  if (key === 13) {
-    editCard();
-  }
-});
+cardsArea.addEventListener('dblclick', editCard)
+// bodyText.addEventListener('dblclick', editCard)
 
 
 ///////////////////////////////////////////////
 //FUNCTIONS
 
-function editCard(){
-  var editedIdea = new Idea(event.target.innerText, event.target.parentElement.innerText, event.target.parentElement.dataset.id);
-  //WE NEED TO FIGURE OUT HOW TO CAPTURE BOTH FIELDS AT ONCE INSTEAD OF JUST THE TARGET
-    editedIdea.updateContent(editedIdea.id, editedIdea.name, editedIdea.content);
-    console.log(editedIdea.id, editedIdea.name, editedIdea.content)
+function editCard(event){
+  event.target.contentEditable = true;
 
-  }
-
+  document.body.addEventListener('keypress', function (e) {
+    var key = e.keyCode;
+    if (key === 13) {
+      event.target.contentEditable = false;
+      var index = parseInt(event.target.parentElement.dataset.id);
+      var ideaTarget = arrayOfIdeas.find(function(idea) {
+        return idea.id === index;
+      })
+      if (event.target.classList.contains("card-title")) {
+        ideaTarget.updateContent(event.target.innerText, "name")
+      } else if (event.target.classList.contains("body-text")) {
+        ideaTarget.updateContent(event.target.innerText, "content")
+      }
+      ideaTarget.saveToStorage(arrayOfIdeas)
+    //removing event listener
+    }
+  });
+}
 
 function deleteCard(){
   var oldIdea = new Idea("", "", event.target.parentElement.parentElement.dataset.id);
@@ -68,7 +76,7 @@ function deleteCard(){
 }
 
 function saveFunction() {
-// SAVE IDEA
+  // SAVE IDEA
   id = Date.now();
   var quality = 0;
   var newIdea = new Idea(titleInput.value, bodyInput.value, id, quality);
@@ -79,82 +87,65 @@ function saveFunction() {
   bodyInput.value = "";
 }
 
+
 function pageLoad(){
 // CREATE CARDS ON PAGE LOAD
 //recreate new instances on page load
-  
-  
-  arrayOfIdeas.forEach(function(element,index){
-    // var newArr = JSON.parse(localStorage.key(index));
-    console.log('another');
-
-    // var newArr = JSON.parse(arrayOfIdeas);
-    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
-    newIdeaCard(arrayOfIdeas[index]);
-    
-    
-    arrayOfIdeas.push(newIdea)
-  });
+  if (localStorage.hasOwnProperty("savedIdeas")){
+    var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+    localStorageArray.forEach(function(element,index){
+      var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+      newIdeaCard(element);
+      arrayOfIdeas.push(newIdea)
+    });
+  }
 }
-
-
 
 function newIdeaCard(idea) {
 // CREATE CARD
-  var cardSection = document.querySelector(".cards-section");
-  cardSection.insertAdjacentHTML('beforeend', 
-    `<article data-id=${idea.id} class="card">
-      <h2 contenteditable = true class= "card-input card-title">${idea.name}</h2>
-      <p contenteditable = true class= "card-input body-text">${idea.content}</p>
-      <div>
-        <img class="downvote" onclick="updateQuality(this, -1)" src="assets/downvote.svg">
-        <img class="upvote" onclick="updateQuality(this, 1)" src="assets/upvote.svg">
-        <p class="quality">Quality: ${idea.quality}</p>
-        <img class="delete" src="assets/delete.svg">
-      </div>
-    </article>`
+var cardSection = document.querySelector(".cards-section");
+cardSection.insertAdjacentHTML('afterbegin', 
+  `<article data-id=${idea.id} class="card">
+  <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
+  <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
+  <div>
+  <img class="downvote" onclick="updateQuality(this, -1)" src="assets/downvote.svg">
+  <img class="upvote" onclick="updateQuality(this, 1)" src="assets/upvote.svg">
+  <p class="quality">Quality: ${idea.quality}</p>
+  <img class="delete" src="assets/delete.svg">
+  </div>
+  </article>`
   );
   // var card = 
-    
+
   // cardSection.innerHTML = card + cardSection.innerHTML;
 // downvoteBtn.addEventListener('click', updateQuality);
 // upvoteBtn.addEventListener('click', updateQuality);
 
 }
 
-function updateQuality(thisElement, num) {
-  // console.log(id)
+// function updateQuality(thisElement, num) {
+//   // console.log(id)
 
-  // get the object find
-  // arrayOfIdeas
+//   // get the object find
+//   // arrayOfIdeas
 
+//   counter += num;
+//   // If this element has class of upvote, allow this, if the element has a class of downvote, do this
 
-  
-  counter += num;
-
-  
-  // If this element has class of upvote, allow this, if the element has a class of downvote, do this
-
-  thisElement.nextElementSibling.innerHTML = qualityArray[counter];
-
-}
-
-
-
-
-
-// var searchField = document.getElementById("search");
+//   thisElement.nextElementSibling.innerHTML = qualityArray[counter];
+// }
 
 function searchFunction() {
 //SEARCH FUNCTION
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
   var toFind = searchField.value;
-  var index = arrayOfIdeas.filter(function(idea) {
+  var filteredIdeas = localStorageArray.filter(function(idea) {
     return idea.name.includes(toFind) || idea.content.includes(toFind);
   })
-    index.forEach(function(element){
-    newIdeaCard(element.name, element.content);
+  filteredIdeas.forEach(function(element){
+    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+    newIdeaCard(element);
   })
 }
-
-
