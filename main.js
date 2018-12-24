@@ -122,34 +122,50 @@ cardSection.insertAdjacentHTML('afterbegin',
  //  if (event.target.className === "downvote") {
 
 function updateQuality(num) {
-    var parent = (event.target.parentElement.parentElement.dataset.id);
-    console.log(parent)
-
     var index = parseInt(event.target.parentElement.parentElement.dataset.id);
     var qualityTarget = arrayOfIdeas.find(function(idea) {
       return idea.id === index;
     })
-    console.log(qualityTarget.quality)
-   
 
-
-
+    var qualityText = event.target.nextSibling.nextElementSibling;
     if (num === 1) {
-      if (qualityTarget.quality === 0) {
-        console.log('Plausible')
-        qualityTarget.quality = 1;
-      } else if (qualityTarget.quality === 1) {
-        qualityTarget.quality = 2;
-      } else if (num === -1) {
-      if (qualityTarget.quality === 1) {
-        console.log("swill")
-        qualityTarget.quality = 0;
-        } else if (qualityTarget.quality === 2) {
-          qualityTarget.quality = 1;
-        }
-      }
+      qualityTarget.quality++;
+    } else if (num === -1) {
+      qualityTarget.quality--;
     }
 
+    console.log(qualityTarget.quality)
+
+    var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
+
+    
+    if (qualityTarget.quality === 1) {
+      qualityText.innerText = `Quality: ${qualityArray[1]}`;
+    } else if (qualityTarget.quality === 2){
+      qualityText.innerText = `Quality: ${qualityArray[2]}`;
+    } else if (qualityTarget.quality === 0) {
+      qualityText.innerText = `Quality: ${qualityArray[0]}`;
+    } else if (qualityTarget.quality--);
+
+    if (qualityTarget.quality-1) {
+      qualityTextNext.innerText = `Quality: ${qualityArray[0]}`;
+    } else if (qualityTarget.quality-2) {
+      qualityTextNext.innerText = `Quality: ${qualityArray[1]}`;
+    } else if (qualityTarget.quality);
+  }
+  
+
+  
+
+// for (var i = 0; i >= qualityArray.length; i++) {
+//   if (qualityTarget.quality === 1) {
+//       qualityText.innerText = `Quality: ${qualityArray[1]}`;
+//     } else if (qualityTarget.quality === 2){
+//       qualityText.innerText = `Quality: ${qualityArray[2]}`;
+//     } else if (qualityTarget.quality === 0) {
+//       qualityText.innerText = `Quality: ${qualityArray[0]}`;
+//     }
+// }
 
 
 
@@ -173,7 +189,7 @@ function updateQuality(num) {
   //     qualityText.innerText = `Quality: ${qualityArray[2]}`;
   //   } else if (qualityTarget.quality === 0)
   //     qualityText.innerText = `Quality: ${qualityArray[0]}`;
-  }
+  
 
 
 
