@@ -11,6 +11,11 @@ var downvoteBtn = document.querySelector(".downvote");
 var deleteBtn = document.querySelector(".delete");
 var searchBtn = document.getElementById("searchBtn");
 
+//QUALITY VARIABLES
+var swill = document.getElementById("swill");
+var plausible = document.getElementById("plausible");
+var genius = document.getElementById("genius");
+
 //ARRAY VARIABLE
 var arrayOfIdeas = [];
 var qualityArray = ["Swill", "Plausible", "Genius"]
@@ -38,10 +43,26 @@ cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
 
-cardsArea.addEventListener('dblclick', editCard)
+cardsArea.addEventListener('dblclick', editCard);
+
+swill.addEventListener('click', sortSwill);
 
 ///////////////////////////////////////////////
 //FUNCTIONS
+
+function sortSwill() {
+  console.log("in swill")
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  // cardsArea.innerHTML = "";
+  var filteredQuality = localStorageArray.filter(function(idea) {
+    return idea.quality.includes = 0;
+  })
+  console.log(filteredQuality)
+  // filteredQuality.forEach(function(element){
+  //   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+  //   newIdeaCard(element);
+  }
+
 
 function editCard(event){
   event.target.contentEditable = true;
@@ -106,8 +127,8 @@ cardSection.insertAdjacentHTML('afterbegin',
   <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
   <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
   <div>
-  <img class="downvote" onclick="updateQuality(-1)" src="assets/downvote.svg">
-  <img class="upvote" onclick="updateQuality(1)" src="assets/upvote.svg">
+  <img class="downvote" onclick="updateQuality(${-1})" src="assets/downvote.svg">
+  <img class="upvote" onclick="updateQuality(${1})" src="assets/upvote.svg">
   <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
   <img class="delete" src="assets/delete.svg">
   </div>
@@ -126,23 +147,22 @@ function updateQuality(num) {
     var qualityTarget = arrayOfIdeas.find(function(idea) {
       return idea.id === index;
     })
-    var qualityText = event.target.nextSibling.nextElementSibling.innerText;
+
+    var qualityText = event.target.nextSibling.nextElementSibling;
     if (num === 1) {
       qualityTarget.quality++;
-      console.log(qualityTarget.quality)
-      console.log(qualityText)
     } else if (num === -1) {
       qualityTarget.quality--;
     }
+
+
+
     if (qualityTarget.quality === 1) {
-      qualityText = qualityArray[1];
-      console.log(qualityText)
+      qualityText.innerText = `Quality: ${qualityArray[1]}`;
     } else if (qualityTarget.quality === 2){
-      qualityText = qualityArray[2];
-      console.log(qualityText)
+      qualityText.innerText = `Quality: ${qualityArray[2]}`;
     } else if (qualityTarget.quality === 0)
-      qualityText = qualityArray[0];
-      console.log(qualityText)
+      qualityText.innerText = `Quality: ${qualityArray[0]}`;
   }
 
    // if (counter >= 2) {
