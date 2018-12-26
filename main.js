@@ -55,18 +55,16 @@ function sortSwill() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   // cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
-    return idea.quality.includes = 0;
+    return qualityArray[idea.quality].includes = 0;
   })
   console.log(filteredQuality)
   // filteredQuality.forEach(function(element){
   //   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
   //   newIdeaCard(element);
-  }
-
+}
 
 function editCard(event){
   event.target.contentEditable = true;
-
   document.body.addEventListener('keypress', function (e) {
     var key = e.keyCode;
     if (key === 13) {
@@ -105,7 +103,6 @@ function saveFunction() {
   bodyInput.value = "";
 }
 
-
 function pageLoad(){
 // CREATE CARDS ON PAGE LOAD
 //recreate new instances on page load
@@ -136,53 +133,41 @@ cardSection.insertAdjacentHTML('afterbegin',
   );
 }
 
-// cardsArea.addEventListener('click', updateQuality);
-// upvoteBtn.addEventListener('click', updateQuality);
-
- // console.log("hello")
- //  if (event.target.className === "downvote") {
-
 function updateQuality(num) {
-    var index = parseInt(event.target.parentElement.parentElement.dataset.id);
-    var qualityTarget = arrayOfIdeas.find(function(idea) {
-      return idea.id === index;
-    })
-
+  var index = parseInt(event.target.parentElement.parentElement.dataset.id);
+  var qualityTarget = arrayOfIdeas.find(function(idea) {
+    return idea.id === index;
+  })
+  if (num === 1) {
     var qualityText = event.target.nextSibling.nextElementSibling;
-    if (num === 1) {
-      qualityTarget.quality++;
-    } else if (num === -1) {
-      qualityTarget.quality--;
-    }
-
-
-
-    if (qualityTarget.quality === 1) {
+    if (qualityTarget.quality === 0) {
       qualityText.innerText = `Quality: ${qualityArray[1]}`;
-    } else if (qualityTarget.quality === 2){
-      qualityText.innerText = `Quality: ${qualityArray[2]}`;
-    } else if (qualityTarget.quality === 0)
-      qualityText.innerText = `Quality: ${qualityArray[0]}`;
+      qualityTarget.quality++
+      qualityTarget.updateQuality(qualityArray[1]);
+    } else if (qualityTarget.quality === 1) {
+    qualityText.innerText = `Quality: ${qualityArray[2]}`;
+      qualityTarget.quality++
+      qualityTarget.updateQuality(qualityArray[2]);
+    }
+  } else if (num === -1) {
+    var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
+    if (qualityTarget.quality === 1) {
+      qualityTextNext.innerText = `Quality: ${qualityArray[0]}`;
+      qualityTarget.quality--
+    } else if (qualityTarget.quality === 2) {
+      qualityTextNext.innerText = `Quality: ${qualityArray[1]}`;
+      qualityTarget.quality--
+    }
   }
+  qualityTarget.saveToStorage(arrayOfIdeas);
 
-   // if (counter >= 2) {
- //   this.quality = 'Genius'
- //  } else if (counter = 1) {
- //   this.quality = 'Plausible'
- //  } else {
- //   this.quality = 'Swill'
- //  }
-
-  // var index = parseInt(event.target.parentElement.dataset.id);
-
-  // get the object find
-  // arrayOfIdeas
-
-  // counter += num;
-  // If this element has class of upvote, allow this, if the element has a class of downvote, do this
-
-  // thisElement.nextElementSibling.innerHTML = qualityArray[counter];
-
+// if (event.target.classList.contains("card-title")) {
+// ideaTarget.updateContent(event.target.innerText, "name")
+// } else if (event.target.classList.contains("body-text")) {
+// ideaTarget.updateContent(event.target.innerText, "content")
+// }
+// ideaTarget.saveToStorage(arrayOfIdeas)
+}
 
 function searchFunction() {
 //SEARCH FUNCTION
