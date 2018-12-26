@@ -143,11 +143,9 @@ function updateQuality(num) {
     if (qualityTarget.quality === 0) {
       qualityText.innerText = `Quality: ${qualityArray[1]}`;
       qualityTarget.quality++
-      qualityTarget.updateQuality(qualityArray[1]);
     } else if (qualityTarget.quality === 1) {
     qualityText.innerText = `Quality: ${qualityArray[2]}`;
       qualityTarget.quality++
-      qualityTarget.updateQuality(qualityArray[2]);
     }
   } else if (num === -1) {
     var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
