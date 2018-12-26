@@ -158,13 +158,6 @@ function updateQuality(num) {
     }
   }
   qualityTarget.saveToStorage(arrayOfIdeas);
-
-// if (event.target.classList.contains("card-title")) {
-// ideaTarget.updateContent(event.target.innerText, "name")
-// } else if (event.target.classList.contains("body-text")) {
-// ideaTarget.updateContent(event.target.innerText, "content")
-// }
-// ideaTarget.saveToStorage(arrayOfIdeas)
 }
 
 function searchFunction() {
