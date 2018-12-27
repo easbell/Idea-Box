@@ -15,7 +15,7 @@ var searchBtn = document.getElementById("searchBtn");
 
 //ARRAY VARIABLE
 var arrayOfIdeas = [];
-var qualityArray = ["Swill", "Plausible", "Genius"]
+var qualityArray = ["Swill", "Plausible", "Genius"];
 
 //AREA VARIABLE
 var cardsArea = document.querySelector(".cards-section");
@@ -24,7 +24,7 @@ var cardsArea = document.querySelector(".cards-section");
 var searchField = document.getElementById("search");
 
 //CARD
-var card = document.querySelector(".card")
+var card = document.querySelector(".card");
 var cardTitle = document.querySelector(".card-title");
 var bodyText = document.querySelector(".body-text");
 
@@ -213,11 +213,11 @@ function searchFunction() {
   var toFind = searchField.value;
   var filteredIdeas = localStorageArray.filter(function(idea) {
     return idea.name.includes(toFind) || idea.content.includes(toFind);
-  })
+  });
   filteredIdeas.forEach(function(element){
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
-  })
+  });
 }
 ///////SHOW MORE BUTTON
 
@@ -231,7 +231,7 @@ function showLess() {
 showMoreBtn.onclick = function(){
   showMoreBtn.innerText = "Show Less";
   showLess();
-}
+};
 
 // function showAll(){
 // }
