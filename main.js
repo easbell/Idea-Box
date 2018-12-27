@@ -38,7 +38,10 @@ cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
 
-cardsArea.addEventListener('dblclick', editCard)
+cardsArea.addEventListener('dblclick', editCard);
+
+// showMoreBtn.addEventlListener('click', showAll);
+
 
 ///////////////////////////////////////////////
 //FUNCTIONS
@@ -93,10 +96,12 @@ function pageLoad(){
     localStorageArray.forEach(function(element,index){
       var newIdea = new Idea(element.name, element.content, element.id, element.quality);
       newIdeaCard(element);
-      arrayOfIdeas.push(newIdea)
+      arrayOfIdeas.push(newIdea);
     });
   }
 }
+
+
 
 function newIdeaCard(idea) {
 // CREATE CARD
@@ -217,3 +222,22 @@ function searchFunction() {
     newIdeaCard(element);
   })
 }
+///////SHOW MORE BUTTON
+
+var showMoreBtn = document.getElementById("show-more");
+
+showMoreBtn.addEventlListener('click', hideSection());
+
+function hideSection() {
+  e.classList.add('is-hidden');
+  // e.classList.remove('is-visible');
+}
+
+
+// function showAll(){
+//   if(arrayOfIdeas.length >= 11){
+//arrayOfIdeas.slice(-10);
+  // }
+// }
+
+
