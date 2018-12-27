@@ -58,13 +58,13 @@ function editCard(event){
       var index = parseInt(event.target.parentElement.dataset.id);
       var ideaTarget = arrayOfIdeas.find(function(idea) {
         return idea.id === index;
-      })
+      });
       if (event.target.classList.contains("card-title")) {
-        ideaTarget.updateContent(event.target.innerText, "name")
+        ideaTarget.updateContent(event.target.innerText, "name");
       } else if (event.target.classList.contains("body-text")) {
-        ideaTarget.updateContent(event.target.innerText, "content")
+        ideaTarget.updateContent(event.target.innerText, "content");
       }
-      ideaTarget.saveToStorage(arrayOfIdeas)
+      ideaTarget.saveToStorage(arrayOfIdeas);
     }
   });
 }
@@ -108,7 +108,7 @@ function pageLoad(){
 function newIdeaCard(idea) {
 // CREATE CARD
 var cardSection = document.querySelector(".cards-section");
-cardSection.insertAdjacentHTML('afterbegin', 
+cardSection.insertAdjacentHTML('afterbegin',
   `<article data-id=${idea.id} class="card">
   <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
   <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
@@ -132,7 +132,7 @@ function updateQuality(num) {
     var index = parseInt(event.target.parentElement.parentElement.dataset.id);
     var qualityTarget = arrayOfIdeas.find(function(idea) {
       return idea.id === index;
-    })
+    });
 
     var qualityText = event.target.nextSibling.nextElementSibling;
     if (num === 1) {
@@ -140,25 +140,20 @@ function updateQuality(num) {
     } else if (num === -1) {
       qualityTarget.quality--;
     }
-
-    console.log(qualityTarget.quality)
-
     var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
-
-    
     if (qualityTarget.quality === 1) {
       qualityText.innerText = `Quality: ${qualityArray[1]}`;
     } else if (qualityTarget.quality === 2){
       qualityText.innerText = `Quality: ${qualityArray[2]}`;
     } else if (qualityTarget.quality === 0) {
       qualityText.innerText = `Quality: ${qualityArray[0]}`;
-    } else if (qualityTarget.quality--);
-
+    }
     if (qualityTarget.quality-1) {
       qualityTextNext.innerText = `Quality: ${qualityArray[0]}`;
     } else if (qualityTarget.quality-2) {
       qualityTextNext.innerText = `Quality: ${qualityArray[1]}`;
-    } else if (qualityTarget.quality);
+    } 
+    // else if (qualityTarget.quality);
   }
   
 
@@ -225,15 +220,18 @@ function searchFunction() {
   })
 }
 ///////SHOW MORE BUTTON
-var showMoreBtn = document.getElementById("show-more");
 
-showMoreBtn.addEventlListener('click', showLess);
+var showMoreBtn = document.querySelector(".show-more");
+// var shortList = arrayOfIdeas.slice(-10);
 
 function showLess() {
-  // var shortList = arrayOfIdeas.slice(-10);
-  showMoreBtn.innerText = "Show Less";
+  console.log(arrayOfIdeas.slice(-10));
 }
 
+showMoreBtn.onclick = function(){
+  showMoreBtn.innerText = "Show Less";
+  showLess();
+}
 
 // function showAll(){
 // }
