@@ -1,5 +1,7 @@
 //VARIABLES
 
+
+//  
 //INPUT VARIABLES
 var titleInput = document.getElementById("title");
 var bodyInput = document.getElementById("body");
@@ -223,21 +225,32 @@ function searchFunction() {
   })
 }
 ///////SHOW MORE BUTTON
-
 var showMoreBtn = document.getElementById("show-more");
 
-showMoreBtn.addEventlListener('click', hideSection());
+showMoreBtn.addEventlListener('click', showLess);
 
-function hideSection() {
-  e.classList.add('is-hidden');
-  // e.classList.remove('is-visible');
+function showLess() {
+  // var shortList = arrayOfIdeas.slice(-10);
+  showMoreBtn.innerText = "Show Less";
 }
 
 
 // function showAll(){
-//   if(arrayOfIdeas.length >= 11){
-//arrayOfIdeas.slice(-10);
-  // }
 // }
 
+//////////////
 
+// on pageLoad (with empty localStorage)
+//     button.hidden = true (default)
+// when saving cards
+//     if (arrayOfIdeas.length >=11){
+//       button.hidden= false(Show More)
+//       display (-10) most recent ideas
+//     }(default)
+// when showMoreBtn is clicked
+//     full arrayOfIdeas is displayed
+//     button.innerText = "Show Less"
+// when Show Less button clicked
+//     (defaults restored)
+//     10 most recent cards displayed on DOM
+//     button.innerText = "Show More"

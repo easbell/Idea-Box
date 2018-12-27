@@ -190,7 +190,15 @@ footer {
 }
 
 #show-more {
-
+  background-color: #63646b;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px;
+  width: 150px;
+  margin: 0px 10px;
+  height: 40px;
 }
 
 
