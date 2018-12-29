@@ -11,6 +11,11 @@ var downvoteBtn = document.querySelector(".downvote");
 var deleteBtn = document.querySelector(".delete");
 var searchBtn = document.getElementById("searchBtn");
 
+//QUALITY VARIABLES
+var swill = document.getElementById("swill");
+var plausible = document.getElementById("plausible");
+var genius = document.getElementById("genius");
+
 //ARRAY VARIABLE
 var arrayOfIdeas = [];
 var qualityArray = ["Swill", "Plausible", "Genius"]
@@ -38,14 +43,28 @@ cardsArea.addEventListener('click', deleteCard);
 
 window.addEventListener('load', pageLoad);
 
-cardsArea.addEventListener('dblclick', editCard)
+cardsArea.addEventListener('dblclick', editCard);
+
+swill.addEventListener('click', sortSwill);
 
 ///////////////////////////////////////////////
 //FUNCTIONS
 
+function sortSwill() {
+  console.log("in swill")
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  // cardsArea.innerHTML = "";
+  var filteredQuality = localStorageArray.filter(function(idea) {
+    return qualityArray[idea.quality].includes = 0;
+  })
+  console.log(filteredQuality)
+  // filteredQuality.forEach(function(element){
+  //   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+  //   newIdeaCard(element);
+}
+
 function editCard(event){
   event.target.contentEditable = true;
-
   document.body.addEventListener('keypress', function (e) {
     var key = e.keyCode;
     if (key === 13) {
@@ -84,7 +103,6 @@ function saveFunction() {
   bodyInput.value = "";
 }
 
-
 function pageLoad(){
 // CREATE CARDS ON PAGE LOAD
 //recreate new instances on page load
@@ -106,103 +124,41 @@ cardSection.insertAdjacentHTML('afterbegin',
   <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
   <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
   <div>
-  <img class="downvote" onclick="updateQuality(-1)" src="assets/downvote.svg">
-  <img class="upvote" onclick="updateQuality(1)" src="assets/upvote.svg">
-  <p class="quality">Quality: <span>${qualityArray[idea.quality]}</span></p>
+  <img class="downvote" onclick="updateQuality(${-1})" src="assets/downvote.svg">
+  <img class="upvote" onclick="updateQuality(${1})" src="assets/upvote.svg">
+  <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
   <img class="delete" src="assets/delete.svg">
   </div>
   </article>`
   );
 }
 
-// cardsArea.addEventListener('click', updateQuality);
-// upvoteBtn.addEventListener('click', updateQuality);
-
- // console.log("hello")
- //  if (event.target.className === "downvote") {
-
 function updateQuality(num) {
-    var index = parseInt(event.target.parentElement.parentElement.dataset.id);
-    var qualityTarget = arrayOfIdeas.find(function(idea) {
-      return idea.id === index;
-    })
-
+  var index = parseInt(event.target.parentElement.parentElement.dataset.id);
+  var qualityTarget = arrayOfIdeas.find(function(idea) {
+    return idea.id === index;
+  })
+  if (num === 1) {
     var qualityText = event.target.nextSibling.nextElementSibling;
-    if (num === 1) {
-      qualityTarget.quality++;
-    } else if (num === -1) {
-      qualityTarget.quality--;
-    }
-
-    console.log(qualityTarget.quality)
-
-    var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
-
-    
-    if (qualityTarget.quality === 1) {
+    if (qualityTarget.quality === 0) {
       qualityText.innerText = `Quality: ${qualityArray[1]}`;
-    } else if (qualityTarget.quality === 2){
-      qualityText.innerText = `Quality: ${qualityArray[2]}`;
-    } else if (qualityTarget.quality === 0) {
-      qualityText.innerText = `Quality: ${qualityArray[0]}`;
-    } else if (qualityTarget.quality--);
-
-    if (qualityTarget.quality-1) {
+      qualityTarget.quality++
+    } else if (qualityTarget.quality === 1) {
+    qualityText.innerText = `Quality: ${qualityArray[2]}`;
+      qualityTarget.quality++
+    }
+  } else if (num === -1) {
+    var qualityTextNext = event.target.nextSibling.nextSibling.nextElementSibling;
+    if (qualityTarget.quality === 1) {
       qualityTextNext.innerText = `Quality: ${qualityArray[0]}`;
-    } else if (qualityTarget.quality-2) {
+      qualityTarget.quality--
+    } else if (qualityTarget.quality === 2) {
       qualityTextNext.innerText = `Quality: ${qualityArray[1]}`;
-    } else if (qualityTarget.quality);
+      qualityTarget.quality--
+    }
   }
-  
-
-  
-
-// for (var i = 0; i >= qualityArray.length; i++) {
-//   if (qualityTarget.quality === 1) {
-//       qualityText.innerText = `Quality: ${qualityArray[1]}`;
-//     } else if (qualityTarget.quality === 2){
-//       qualityText.innerText = `Quality: ${qualityArray[2]}`;
-//     } else if (qualityTarget.quality === 0) {
-//       qualityText.innerText = `Quality: ${qualityArray[0]}`;
-//     }
-// }
-
-
-
-
-
-    // console.log(index)
-    // var qualityText = event.target.nextSibling.nextElementSibling;
-    // console.log(event.target)
-    // if (num === 1) {
-    //   qualityTarget.quality = 1;
-    // } else if (num === -1) {
-    //   qualityTarget.quality--;
-    // }
-
-    // console.log(qualityTarget.quality)
-
-
-  //   if (qualityTarget.quality === 1) {
-  //     qualityText.innerText = `Quality: ${qualityArray[1]}`;
-  //   } else if (qualityTarget.quality === 2){
-  //     qualityText.innerText = `Quality: ${qualityArray[2]}`;
-  //   } else if (qualityTarget.quality === 0)
-  //     qualityText.innerText = `Quality: ${qualityArray[0]}`;
-  
-
-
-
-  // var index = parseInt(event.target.parentElement.dataset.id);
-
-  // get the object find
-  // arrayOfIdeas
-
-  // counter += num;
-  // If this element has class of upvote, allow this, if the element has a class of downvote, do this
-
-  // thisElement.nextElementSibling.innerHTML = qualityArray[counter];
-
+  qualityTarget.saveToStorage(arrayOfIdeas);
+}
 
 function searchFunction() {
 //SEARCH FUNCTION
