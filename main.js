@@ -47,6 +47,10 @@ cardsArea.addEventListener('dblclick', editCard);
 
 swill.addEventListener('click', sortSwill);
 
+plausible.addEventListener('click', sortPlausible);
+
+genius.addEventListener('click', sortGenius);
+
 ///////////////////////////////////////////////
 //FUNCTIONS
 
@@ -55,12 +59,33 @@ function sortSwill() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   // cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
-    return qualityArray[idea.quality].includes = 0;
+    if (idea.quality === 0) {
+      return idea.quality === 0;
+    } else if (idea.quality === 1 || 2) {
+      localStorageArray.style.visibility = 'hidden';
+    }
+    // return qualityArray[quality.idea].includes = 0;
   })
   console.log(filteredQuality)
   // filteredQuality.forEach(function(element){
   //   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
   //   newIdeaCard(element);
+}
+
+function sortPlausible() {
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  var filteredQuality = localStorageArray.filter(function(idea) {
+    return idea.quality === 1;
+  });
+  console.log(filteredQuality)
+}
+
+function sortGenius() {
+  var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  var filteredQuality = localStorageArray.filter(function(idea) {
+    return idea.quality === 2;
+  });
+  console.log(filteredQuality)
 }
 
 function editCard(event){
@@ -173,3 +198,9 @@ function searchFunction() {
     newIdeaCard(element);
   })
 }
+
+// function filterIdeas(query) {
+//   return arrayOfIdeas.filter(function(el) {
+//       return el.indexOf(query) > -1;
+//   })
+// }
