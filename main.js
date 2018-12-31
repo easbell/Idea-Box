@@ -57,35 +57,39 @@ genius.addEventListener('click', sortGenius);
 function sortSwill() {
   console.log("in swill")
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
-  // cardsArea.innerHTML = "";
+  cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
-    if (idea.quality === 0) {
-      return idea.quality === 0;
-    } else if (idea.quality === 1 || 2) {
-      localStorageArray.style.visibility = 'hidden';
-    }
-    // return qualityArray[quality.idea].includes = 0;
+    return idea.quality === 0;
   })
-  console.log(filteredQuality)
-  // filteredQuality.forEach(function(element){
-  //   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
-  //   newIdeaCard(element);
+   filteredQuality.forEach(function(element){
+    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+    newIdeaCard(element);
+  });
 }
+
 
 function sortPlausible() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
     return idea.quality === 1;
   });
-  console.log(filteredQuality)
+  filteredQuality.forEach(function(element){
+  var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+  newIdeaCard(element);
+  });
 }
 
 function sortGenius() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
+  cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
     return idea.quality === 2;
   });
-  console.log(filteredQuality)
+    filteredQuality.forEach(function(element){
+    var newIdea = new Idea(element.name, element.content, element.id, element.quality);
+    newIdeaCard(element);
+  });
 }
 
 function editCard(event){
