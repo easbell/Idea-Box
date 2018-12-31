@@ -98,6 +98,7 @@ h3 {
   width: 100%;
   border-radius: 5px;
   border: 2px solid #d6d2d9;
+  width: 100%;
   word-wrap: break-word;
 }
 
@@ -116,10 +117,11 @@ h3 {
 
 /*QUALITY BUTTONS*/
 .quality {
-  margin: 30px auto;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   font-weight: 800;
+
 }
 
 .quality button {
