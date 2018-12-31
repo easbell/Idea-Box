@@ -114,6 +114,11 @@ function pageLoad(){
       arrayOfIdeas.push(newIdea);
     });
   }
+  if (cardsArea.childElementCount <= 10){
+  showMoreBtn.style.display = 'none';
+  }else{
+    showMoreBtn.style.display = 'block';
+  }
 }
 
 function newIdeaCard(idea) {
