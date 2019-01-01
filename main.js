@@ -207,3 +207,16 @@ function searchFunction() {
     newIdeaCard(element);
   });
 }
+
+var showMoreBtn = document.querySelector(".show-more");
+
+showMoreBtn.addEventListener('click', showAll);
+
+function showAll() {
+  if(showMoreBtn.innerText === "Show More"){
+    showMoreBtn.innerText = "Show Less";  
+  }else if(showMoreBtn.innerText === "Show Less"){
+    showMoreBtn.innerText = "Show More";
+    showTen();  
+  }
+}
