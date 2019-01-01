@@ -25,8 +25,8 @@ class Idea {
   	this[type] = newText;
 	}
 
-	updateQuality(){
-
+	updateQuality(array){
+		this.saveToStorage(array)
 	}
 
 }

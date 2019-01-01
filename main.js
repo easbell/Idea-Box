@@ -157,7 +157,7 @@ function updateQuality(num) {
       qualityTarget.quality--
     }
   }
-  qualityTarget.saveToStorage(arrayOfIdeas);
+  qualityTarget.updateQuality(arrayOfIdeas);
 }
 
 function searchFunction() {
