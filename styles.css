@@ -138,7 +138,7 @@ h3 {
 /*CARD AREA STYLING*/
 .cards-section {
   background-color: #F9F9FA;
-  height: 100vh;
+  height: 100%;
 }
 
 .card {
@@ -178,6 +178,23 @@ img {
 
 .delete {
   float: right;
+}
+
+
+footer {
+  display: flex;
+}
+
+.show-more {
+  background-color: #63646b;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  font-weight: 700;
+  height: 40px;
+  margin: 2rem auto;
+  padding: 10px;
+  width: 150px;
 }
 
 /*MEDIA QUERIES*/
