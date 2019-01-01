@@ -1,4 +1,4 @@
-class Idea {
+	class Idea {
 	constructor(name, content, id, quality) {
 		this.name = name;
 		this.content = content;
