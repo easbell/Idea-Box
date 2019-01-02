@@ -138,7 +138,7 @@ h3 {
 /*CARD AREA STYLING*/
 .cards-section {
   background-color: #F9F9FA;
-  height: 100%;
+  height: 2180px;
 }
 
 .card {
@@ -147,6 +147,7 @@ h3 {
   border: 2px solid #d6d2d9;
   box-sizing: border-box;
   display: flex;
+  height: 165px;
   flex-direction: column;
   margin: 50px auto;
   width: 57%;
@@ -155,6 +156,7 @@ h3 {
 
 h2 {
   margin: 0;
+  height: 30px;
   padding: 15px;
 }
 

@@ -143,7 +143,6 @@ function pageLoad(){
       arrayOfIdeas.push(newIdea);
     });
   }
-  
 }
 
 // var characterNum = document.querySelector(".displayCount");
