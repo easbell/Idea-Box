@@ -80,6 +80,7 @@ h3 {
 }
 
 .input-area {
+  height: 500px;
   justify-content: center;
   margin: auto;
   width: 57%;
@@ -93,13 +94,17 @@ h3 {
   border: 2px solid #d6d2d9;
 }
 
-#body {
+#idea-body {
   height: 150px;
   width: 100%;
   border-radius: 5px;
   border: 2px solid #d6d2d9;
   width: 100%;
   word-wrap: break-word;
+}
+
+#counter {
+  font-weight: 800;
 }
 
 #save {
@@ -115,13 +120,16 @@ h3 {
   width: 101%;
 }
 
+#save:disabled {
+  background-color: #bbbeca;
+}
+
 /*QUALITY BUTTONS*/
 .quality {
   margin: auto;
   display: flex;
   justify-content: space-between;
   font-weight: 800;
-
 }
 
 .quality button {
@@ -139,14 +147,7 @@ h3 {
 .cards-section {
   background-color: #F9F9FA;
   height: 2180px;
-<<<<<<< HEAD
-<<<<<<< HEAD
   overflow: hidden;
-=======
->>>>>>> a0c91b1a05c518d56357171c928628a0b24333ef
-=======
-  overflow: hidden;
->>>>>>> dd8a5cfdaae8b8bedb02881cb5ac7aec3e561242
 }
 
 .card {

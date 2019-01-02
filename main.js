@@ -2,7 +2,7 @@
 
 //INPUT VARIABLES
 var titleInput = document.getElementById("title");
-var bodyInput = document.getElementById("body");
+var bodyInput = document.getElementById("idea-body");
 
 //BUTTON VARIABLES
 var saveBtn = document.getElementById("save");
@@ -229,6 +229,23 @@ function showAll() {
   // }
 }
 
+function charCount(num) {
+  document.getElementById("counter").innerHTML = num + '/120';
+  // if (num >= 100) {
+  //   current.css('color', '#8f0001')
+  // }
+}
+
+function enableButton() {
+  var parsedBody = parseInt(bodyInput.value.length);
+  var parsedTitle = parseInt(titleInput.value.length);
+  if (parsedBody >= 1 && parsedTitle >= 1) {
+    saveBtn.disabled = false;
+    console.log('purple')
+  } else if (parsedBody === 0 && parsedTitle === 0) {
+    saveBtn.disabled = true;
+  }
+}
 
 
 
