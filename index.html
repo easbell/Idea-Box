@@ -21,7 +21,8 @@
         <h3>Title</h3>
         <input type="text" id="title">
         <h3>Body</h3>
-        <textarea name="body" id="body"></textarea>
+        <textarea name="body" id="body" onkeyup="charCounter('data','charcount');" onkeydown="charCounter('data','charcount');"></textarea>
+        <p id="displayCount">Character Count:</p>
         <input type="submit" id="save" value="Save">
         <section class="quality">
           <button id="swill">Swill</button>

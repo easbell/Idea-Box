@@ -145,6 +145,15 @@ function pageLoad(){
   }
 }
 
+// var characterNum = document.querySelector(".displayCount");
+// console.log(characterNum)
+// function charCounter(countFrom, displayTo) {
+//   console.log(countFrom);
+//   var len = bodyInput.value.length;
+//   console.log(len);
+//   characterNum.innerText = "hello";
+// }
+
 function newIdeaCard(idea) {
 // CREATE CARD
 var cardSection = document.querySelector(".cards-section");
@@ -186,7 +195,7 @@ function updateQuality(num) {
       qualityTarget.quality--;
     }
   }
-  qualityTarget.saveToStorage(arrayOfIdeas);
+  qualityTarget.updateQuality(arrayOfIdeas);
 }
 
 function searchFunction() {

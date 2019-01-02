@@ -139,7 +139,10 @@ h3 {
 .cards-section {
   background-color: #F9F9FA;
   height: 2180px;
+<<<<<<< HEAD
   overflow: hidden;
+=======
+>>>>>>> a0c91b1a05c518d56357171c928628a0b24333ef
 }
 
 .card {
@@ -148,6 +151,7 @@ h3 {
   border: 2px solid #d6d2d9;
   box-sizing: border-box;
   display: flex;
+  height: 165px;
   flex-direction: column;
   height: 165px;
   margin: 50px auto;
@@ -158,6 +162,7 @@ h3 {
 h2 {
   height: 30px;
   margin: 0;
+  height: 30px;
   padding: 15px;
 }
 
