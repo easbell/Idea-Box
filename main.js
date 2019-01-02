@@ -143,12 +143,16 @@ function pageLoad(){
       arrayOfIdeas.push(newIdea);
     });
   }
-  if (cardsArea.childElementCount <= 10){
-  showMoreBtn.style.display = 'none';
-  }else{
-    showMoreBtn.style.display = 'block';
-  }
 }
+
+// var characterNum = document.querySelector(".displayCount");
+// console.log(characterNum)
+// function charCounter(countFrom, displayTo) {
+//   console.log(countFrom);
+//   var len = bodyInput.value.length;
+//   console.log(len);
+//   characterNum.innerText = "hello";
+// }
 
 function newIdeaCard(idea) {
 // CREATE CARD
@@ -191,7 +195,7 @@ function updateQuality(num) {
       qualityTarget.quality--;
     }
   }
-  qualityTarget.saveToStorage(arrayOfIdeas);
+  qualityTarget.updateQuality(arrayOfIdeas);
 }
 
 function searchFunction() {
