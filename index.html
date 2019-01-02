@@ -19,11 +19,11 @@
     <main>
       <section class="input-area">
         <h3>Title</h3>
-        <input type="text" id="title">
+        <input type="text" id="title" onkeyup="enableButton()">
         <h3>Body</h3>
-        <textarea name="body" id="body" onkeyup="charCounter('data','charcount');" onkeydown="charCounter('data','charcount');"></textarea>
-        <p id="displayCount">Character Count:</p>
-        <input type="submit" id="save" value="Save">
+        <textarea name="body" id="idea-body" onkeyup="enableButton()" onkeydown="charCount(value.length)"></textarea>
+        <span id="counter"></span>
+        <input type="submit" id="save" value="Save" disabled="true">
         <h6>Sort by Quality</h6>
         <section class="quality">
           <button id="swill">Swill</button>

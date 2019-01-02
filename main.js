@@ -2,7 +2,7 @@
 
 //INPUT VARIABLES
 var titleInput = document.getElementById("title");
-var bodyInput = document.getElementById("body");
+var bodyInput = document.getElementById("idea-body");
 
 //BUTTON VARIABLES
 var saveBtn = document.getElementById("save");
@@ -147,16 +147,6 @@ function pageLoad(){
   }
 }
 
-// var characterNum = document.querySelector(".displayCount");
-// console.log(characterNum)
-
-// function charCounter(countFrom, displayTo) {
-//   console.log(countFrom);
-//   var len = bodyInput.value.length;
-//   console.log(len);
-//   characterNum.innerText = "hello";
-// }
-
 function newIdeaCard(idea) {
   var cardSection = document.querySelector(".cards-section");
   cardSection.insertAdjacentHTML('afterbegin', 
@@ -221,4 +211,22 @@ function showAll() {
     cardsArea.style.height = "2180px";
     showMoreBtn.innerText = "Show More";
   } 
+}
+
+function charCount(num) {
+  document.getElementById("counter").innerHTML = num + '/120';
+  // if (num >= 100) {
+  //   current.css('color', '#8f0001')
+  // }
+}
+
+function enableButton() {
+  var parsedBody = parseInt(bodyInput.value.length);
+  var parsedTitle = parseInt(titleInput.value.length);
+  if (parsedBody >= 1 && parsedTitle >= 1) {
+    saveBtn.disabled = false;
+    console.log('purple')
+  } else if (parsedBody === 0 && parsedTitle === 0) {
+    saveBtn.disabled = true;
+  }
 }
