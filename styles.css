@@ -70,7 +70,7 @@ h1 span {
 
 main {
   display: grid;
-  grid-template-rows: 470px 1fr;
+  grid-template-rows: 525px 1fr;
 }
 
 /*INPUT AREA STYLING*/
@@ -81,7 +81,7 @@ h3 {
 
 .input-area {
   justify-content: center;
-  margin: auto;
+  margin: 0px auto;
   width: 57%;
   max-width: 550px;
 }
@@ -119,20 +119,26 @@ h3 {
 .quality {
   margin: auto;
   display: flex;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between;
   font-weight: 800;
-
 }
 
 .quality button {
-  background-color: #63646b;
+  background-color: #b69eb1;
   border-radius: 5px;
   border: 0;
-  color: #fff;
+  color: #4b4c50;
   font-weight: 700;
   padding: 10px;
   width: 150px;
   height: 40px;
+}
+
+h6 {
+  margin: 40px 0px 10px;
+  font-size: 16px;
 }
 
 /*CARD AREA STYLING*/
@@ -204,6 +210,19 @@ footer {
 }
 
 /*MEDIA QUERIES*/
-/*@media screen and (max-width: 550px) {
+@media screen and (max-width: 850px) {
+  .quality {
+    display: flex;
+    flex-direction: column;
+  }
 
-}*/
+  .quality button {
+     width: 50%;
+     margin: 10px auto;
+  }
+
+  main {
+    grid-template-rows: 650px 1fr;
+  }
+  
+}
