@@ -145,7 +145,14 @@ h6 {
 .cards-section {
   background-color: #F9F9FA;
   height: 2180px;
+<<<<<<< HEAD
+<<<<<<< HEAD
   overflow: hidden;
+=======
+>>>>>>> a0c91b1a05c518d56357171c928628a0b24333ef
+=======
+  overflow: hidden;
+>>>>>>> dd8a5cfdaae8b8bedb02881cb5ac7aec3e561242
 }
 
 .card {
