@@ -143,12 +143,7 @@ function pageLoad(){
       arrayOfIdeas.push(newIdea);
     });
   }
-  console.log(cardsArea.childElementCount)
-  if (cardsArea.childElementCount <= 10){
-    showMoreBtn.style.display = 'none';
-  } else {
-    showMoreBtn.style.display = 'block';
-  }
+  
 }
 
 // var characterNum = document.querySelector(".displayCount");
@@ -216,4 +211,17 @@ function searchFunction() {
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
   });
+}
+
+var showMoreBtn = document.querySelector(".show-more");
+
+showMoreBtn.addEventListener('click', showAll);
+
+function showAll() {
+  if(showMoreBtn.innerText === "Show More"){
+    showMoreBtn.innerText = "Show Less";  
+  }else if(showMoreBtn.innerText === "Show Less"){
+    showMoreBtn.innerText = "Show More";
+    showTen();  
+  }
 }
