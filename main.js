@@ -10,6 +10,7 @@ var upvoteBtn = document.querySelector(".upvote");
 var downvoteBtn = document.querySelector(".downvote");
 var deleteBtn = document.querySelector(".delete");
 var searchBtn = document.getElementById("searchBtn");
+var showMoreBtn = document.querySelector(".show-more");
 
 //QUALITY VARIABLES
 var swill = document.getElementById("swill");
@@ -35,6 +36,8 @@ var bodyText = document.querySelector(".body-text");
 ///////////////////////////////////////////////
 //EVENT LISTENERS
 
+showMoreBtn.addEventListener('click', showAll);
+
 searchField.addEventListener('input', searchFunction);
 
 saveBtn.addEventListener('click', saveFunction);
@@ -55,18 +58,16 @@ genius.addEventListener('click', sortGenius);
 //FUNCTIONS
 
 function sortSwill() {
-  console.log("in swill");
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
   var filteredQuality = localStorageArray.filter(function(idea) {
     return idea.quality === 0;
-  })
+  });
    filteredQuality.forEach(function(element){
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
   });
 }
-
 
 function sortPlausible() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
@@ -121,7 +122,6 @@ function deleteCard(){
 }
 
 function saveFunction() {
-  // SAVE IDEA
   id = Date.now();
   var quality = 0;
   var newIdea = new Idea(titleInput.value, bodyInput.value, id, quality);
@@ -133,8 +133,6 @@ function saveFunction() {
 }
 
 function pageLoad(){
-// CREATE CARDS ON PAGE LOAD
-//recreate new instances on page load
   if (localStorage.hasOwnProperty("savedIdeas")){
     var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
     localStorageArray.forEach(function(element,index){
@@ -143,10 +141,15 @@ function pageLoad(){
       arrayOfIdeas.push(newIdea);
     });
   }
+  if (cardsArea.childElementCount <= 10){
+    showMoreBtn.style.display = 'none';
+  } else {showMoreBtn.style.display = 'block';
+  }
 }
 
 // var characterNum = document.querySelector(".displayCount");
 // console.log(characterNum)
+
 // function charCounter(countFrom, displayTo) {
 //   console.log(countFrom);
 //   var len = bodyInput.value.length;
@@ -155,19 +158,18 @@ function pageLoad(){
 // }
 
 function newIdeaCard(idea) {
-// CREATE CARD
-var cardSection = document.querySelector(".cards-section");
-cardSection.insertAdjacentHTML('afterbegin', 
-  `<article data-id=${idea.id} class="card">
-  <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
-  <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
-  <div>
-  <img class="downvote" onclick="updateQuality(${-1})" src="assets/downvote.svg">
-  <img class="upvote" onclick="updateQuality(${1})" src="assets/upvote.svg">
-  <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
-  <img class="delete" src="assets/delete.svg">
-  </div>
-  </article>`
+  var cardSection = document.querySelector(".cards-section");
+  cardSection.insertAdjacentHTML('afterbegin', 
+    `<article data-id=${idea.id} class="card">
+    <h2 contenteditable="false" class = "card-input card-title">${idea.name}</h2>
+    <p contenteditable="false" class = "card-input body-text">${idea.content}</p>
+    <div>
+    <img class="downvote" onclick="updateQuality(${-1})" src="assets/downvote.svg">
+    <img class="upvote" onclick="updateQuality(${1})" src="assets/upvote.svg">
+    <p class="quality">Quality: ${qualityArray[idea.quality]}</p>
+    <img class="delete" src="assets/delete.svg">
+    </div>
+    </article>`
   );
 }
 
@@ -199,7 +201,6 @@ function updateQuality(num) {
 }
 
 function searchFunction() {
-//SEARCH FUNCTION
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
   var toFind = searchField.value;
@@ -212,10 +213,6 @@ function searchFunction() {
   });
 }
 
-var showMoreBtn = document.querySelector(".show-more");
-
-showMoreBtn.addEventListener('click', showAll);
-
 function showAll() {
   if(showMoreBtn.innerText === "Show More"){
     cardsArea.style.height = "100%";
@@ -224,16 +221,4 @@ function showAll() {
     cardsArea.style.height = "2180px";
     showMoreBtn.innerText = "Show More";
   } 
-  // else if(arrayOfIdeas.length >5) {
-  //   cardsArea.style.height = "1050px";
-  // }
 }
-
-
-
-
-
-
-
-
-
