@@ -215,9 +215,10 @@ function showAll() {
 
 function charCount(num) {
   document.getElementById("counter").innerHTML = num + '/120';
-  // if (num >= 100) {
-  //   current.css('color', '#8f0001')
-  // }
+  var parsedBody = parseInt(bodyInput.value.length);
+  if (parsedBody >= 100) {
+    counter.style.color = "#8f0001";
+  }
 }
 
 function enableButton() {
