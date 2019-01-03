@@ -14,9 +14,7 @@ was a group project with the objective of learning and utilizing JSON, local sto
 
 # What We Learned
 
-We learned how to convert and parse Javascript into and from JSON for the use of local storage. We also used the array prototypes filter() and forEach() in a variety of ways, which really helped with identifying when to use them. We furthered our knowledge of manipulation of the DOM and corresponding elements and should now feel ultra-comfortable using querySelectors, event bubbling, and inline styles such as innerText or HTMl.
-
-It's also important to note that we learned a lot about working remotely and working with each other.
+We learned how to convert and parse Javascript into and from JSON for the use of local storage. We also used the array prototypes filter() and forEach() in a variety of ways, which really helped with identifying when to use them. We furthered our knowledge of manipulation of the DOM and corresponding elements and should now feel ultra-comfortable using querySelectors, event bubbling, and inline styles such as innerText or HTMl. It's also important to note that we learned a lot about working remotely and working with each other.
 
 # Remaining Areas for Improvement
 
