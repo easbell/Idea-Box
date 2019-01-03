@@ -226,12 +226,89 @@ footer {
   }
 
   .quality button {
-     width: 50%;
+     width: 75%;
      margin: 10px auto;
   }
 
   main {
     grid-template-rows: 650px 1fr;
   }
+
+  nav {
+    display: inline-flex;
+    justify-content: none;
+    width: 100%;
+  }
+
+  .search-section {
+    margin-right: 55px;
+  }
   
+  @media screen and (max-width: 700px) {
+    nav {
+      height: 165px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .search-section {
+      margin: auto;
+    }
+
+    .card {
+      margin: 10px auto;
+      width: 94%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    
+    .search-section {
+      width: 47%;
+    }
+
+    img {
+      width: 30px;
+    }
+
+  }
+  
+  @media screen and (max-width: 420px) {
+    
+    .search-section {
+      width: 50%;
+    }
+
+    .input-area {
+      width: 85%
+    }
+    
+    #search {
+      height: 18px;
+    }
+
+    #searchBtn {
+      height: 34px;
+    }
+
+    /*.quality {
+      font-size: 12px;
+    }*/
+
+    img {
+      width: 25px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    nav {
+      height: 110px;
+    }
+
+    .cards-section {
+      height: 1940px;
+    }
+  }
 }
