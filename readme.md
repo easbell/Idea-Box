@@ -24,7 +24,7 @@ We had a hard time keeping our functions as dry as they can be, which is somethi
 
 # Wishlist
 
-While we were able to finish a couple of the extensions, we would have liked to add a bit of spice to our page, with the character count changing color after a certian point. It would have been ideal to use JS for the 'Show More' button, but we were unable to coplete the functionality within our time constraint.
+While we were able to finish a couple of the extensions, it would have been ideal to use JS for the 'Show More' button, but we were unable to coplete the functionality within our time constraint.
 
 # Extensions Implemented
 
