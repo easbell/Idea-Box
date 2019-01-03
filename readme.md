@@ -46,4 +46,5 @@ Galaxy S5 (360 x 640)
 
 
 iPhone X (375 x 812)
+
 [![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
