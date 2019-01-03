@@ -10,7 +10,7 @@ was a group project with the objective of learning and utilizing JSON, local sto
 
 # Our Recreation
 
-
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
 
 # What We Learned
 
@@ -36,3 +36,14 @@ We faced difficulty early on with some of our longer, more complex functions, li
 
 # Mobile Layouts & Responsivenesss
 
+iPad (768 x 1024)
+
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
+
+Galaxy S5 (360 x 640)
+
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
+
+
+iPhone X (375 x 812)
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
