@@ -218,6 +218,8 @@ function charCount(num) {
   var parsedBody = parseInt(bodyInput.value.length);
   if (parsedBody >= 100) {
     counter.style.color = "#8f0001";
+  } else if (parsedBody < 99) {
+    counter.style.color = "#5f5a6b";
   }
 }
 
