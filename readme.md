@@ -42,9 +42,9 @@ iPad (768 x 1024)
 
 Galaxy S5 (360 x 640)
 
-[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/C1181vXw/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/VSxvZFzh)
 
 
 iPhone X (375 x 812)
 
-[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/CM4yYcYR/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/vDD2tL4y)
+[![screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png](https://i.postimg.cc/635rZ62J/screencapture-file-Users-raechelodom-Desktop-mod1-Idea-Box-index.png)](https://postimg.cc/2qMLRD72)
