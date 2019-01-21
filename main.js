@@ -1,36 +1,36 @@
 //VARIABLES
 
 //INPUT VARIABLES
-var titleInput = document.getElementById("title");
-var bodyInput = document.getElementById("idea-body");
+const titleInput = document.getElementById("title");
+const bodyInput = document.getElementById("idea-body");
 
 //BUTTON VARIABLES
-var saveBtn = document.getElementById("save");
-var upvoteBtn = document.querySelector(".upvote");
-var downvoteBtn = document.querySelector(".downvote");
-var deleteBtn = document.querySelector(".delete");
-var searchBtn = document.getElementById("searchBtn");
-var showMoreBtn = document.querySelector(".show-more");
+const saveBtn = document.getElementById("save");
+const upvoteBtn = document.querySelector(".upvote");
+const downvoteBtn = document.querySelector(".downvote");
+const deleteBtn = document.querySelector(".delete");
+const searchBtn = document.getElementById("searchBtn");
+const showMoreBtn = document.querySelector(".show-more");
 
 //QUALITY VARIABLES
-var swill = document.getElementById("swill");
-var plausible = document.getElementById("plausible");
-var genius = document.getElementById("genius");
+const swill = document.getElementById("swill");
+const plausible = document.getElementById("plausible");
+const genius = document.getElementById("genius");
 
 //ARRAY VARIABLE
-var arrayOfIdeas = [];
-var qualityArray = ["Swill", "Plausible", "Genius"];
+const arrayOfIdeas = [];
+const qualityArray = ["Swill", "Plausible", "Genius"];
 
 //AREA VARIABLE
-var cardsArea = document.querySelector(".cards-section");
+const cardsArea = document.querySelector(".cards-section");
 
 //SEARCH BOX VARIABLE
-var searchField = document.getElementById("search");
+const searchField = document.getElementById("search");
 
 //CARD
-var card = document.querySelector(".card");
-var cardTitle = document.querySelector(".card-title");
-var bodyText = document.querySelector(".body-text");
+const card = document.querySelector(".card");
+const cardTitle = document.querySelector(".card-title");
+const bodyText = document.querySelector(".body-text");
 
 
 ///////////////////////////////////////////////
@@ -60,10 +60,10 @@ genius.addEventListener('click', sortGenius);
 function sortSwill() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
-  var filteredQuality = localStorageArray.filter(function(idea) {
+  var filteredQuality = localStorageArray.filter(idea => {
     return idea.quality === 0;
   });
-   filteredQuality.forEach(function(element){
+   filteredQuality.forEach(element => {
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
   });
@@ -72,10 +72,10 @@ function sortSwill() {
 function sortPlausible() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
-  var filteredQuality = localStorageArray.filter(function(idea) {
+  var filteredQuality = localStorageArray.filter(idea => {
     return idea.quality === 1;
   });
-  filteredQuality.forEach(function(element){
+  filteredQuality.forEach(element => {
   var newIdea = new Idea(element.name, element.content, element.id, element.quality);
   newIdeaCard(element);
   });
@@ -84,23 +84,23 @@ function sortPlausible() {
 function sortGenius() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
-  var filteredQuality = localStorageArray.filter(function(idea) {
+  var filteredQuality = localStorageArray.filter(idea => {
     return idea.quality === 2;
   });
-    filteredQuality.forEach(function(element){
+    filteredQuality.forEach(element => {
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
   });
 }
 
-function editCard(event){
+function editCard(event) {
   event.target.contentEditable = true;
   document.body.addEventListener('keypress', function (e) {
     var key = e.keyCode;
     if (key === 13) {
       event.target.contentEditable = false;
       var index = parseInt(event.target.parentElement.dataset.id);
-      var ideaTarget = arrayOfIdeas.find(function(idea) {
+      var ideaTarget = arrayOfIdeas.find(idea => {
         return idea.id === index;
       });
       if (event.target.classList.contains("card-title")) {
@@ -135,7 +135,7 @@ function saveFunction() {
 function pageLoad(){
   if (localStorage.hasOwnProperty("savedIdeas")){
     var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
-    localStorageArray.forEach(function(element,index){
+    localStorageArray.forEach((element,index) => {
       var newIdea = new Idea(element.name, element.content, element.id, element.quality);
       newIdeaCard(element);
       arrayOfIdeas.push(newIdea);
@@ -165,7 +165,7 @@ function newIdeaCard(idea) {
 
 function updateQuality(num) {
   var index = parseInt(event.target.parentElement.parentElement.dataset.id);
-  var qualityTarget = arrayOfIdeas.find(function(idea) {
+  var qualityTarget = arrayOfIdeas.find(idea => {
     return idea.id === index;
   });
   if (num === 1) {
@@ -194,10 +194,10 @@ function searchFunction() {
   var localStorageArray = JSON.parse(localStorage.getItem("savedIdeas"));
   cardsArea.innerHTML = "";
   var toFind = searchField.value;
-  var filteredIdeas = localStorageArray.filter(function(idea) {
+  var filteredIdeas = localStorageArray.filter(idea => {
     return idea.name.includes(toFind) || idea.content.includes(toFind);
   });
-  filteredIdeas.forEach(function(element){
+  filteredIdeas.forEach(element => {
     var newIdea = new Idea(element.name, element.content, element.id, element.quality);
     newIdeaCard(element);
   });

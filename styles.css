@@ -29,10 +29,10 @@ h1 span {
   text-transform: lowercase;
 }
 
-#search {
+/*#search {
   font-size: 24px;
   height: 26px;
-}
+}*/
 
 .search-section {
   width: 30%;
@@ -44,10 +44,11 @@ h1 span {
   width: 100%;
   border: 3px solid #ada9b6;
   padding: 5px;
-  height: 20px;
   border-radius: 5px;
   outline: none;
   color: #7C7879;
+  font-size: 24px;
+  height: 26px;
 }
 
 .fa-search {
